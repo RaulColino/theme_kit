@@ -1,6 +1,6 @@
 name: theme_kit
 description: Make theming with your custom Design System enjoyable.
-version: 0.0.1
+version: 0.0.3
 homepage: "https://pub.dev/packages/theme_kit"
 
 environment:

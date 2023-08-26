@@ -8,10 +8,9 @@ import 'tk_font_weight.dart';
 ///Text widget
 class TKText extends Text {
   //Exclusive attributes of the class
-  TKFontWeight? fontWeight;
-  TKFontFamily? fontFamily;
-  String? package =
-      "theme_kit"; //Added because TextStyle package is private and doesn't have a getter
+  final TKFontWeight? fontWeight;
+  final TKFontFamily? fontFamily;
+  final String? package; //Added because TextStyle package is private and doesn't have a getter
 
   //Constructor
   TKText(
@@ -51,7 +50,7 @@ class TKText extends Text {
     String? debugLabel,
     this.fontFamily = TKFontFamily.inter,
     List<String>? fontFamilyFallback,
-    this.package,
+    this.package = "theme_kit",
   }) : super(
           data,
           key: key,
@@ -249,17 +248,5 @@ class TKText extends Text {
         fontFamily: fontFamily,
         fontFamilyFallback: fontFamilyFallback,
         package: package,
-      );
-}
-
-sealed class AtomizeText extends TKText {
-  AtomizeText(super.data);
-
-  ///Returns a Display XL text
-  ///Display M text is used for large texts in large displays.
-  static TKText displayXL(String data) => TKText(data).styles(
-        fontSize: 48,
-        fontWeight: TKFontWeight.bold,
-        fontFamily: TKFontFamily.inter,
       );
 }

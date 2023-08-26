@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:theme_kit/theme_kit.dart';
 
+sealed class AtomizeText extends TKText {
+  AtomizeText(super.data, {super.key});
+
+  ///Returns a Display XL text
+  ///Display M text is used for large texts in large displays.
+  static TKText displayXL(String data) => TKText(data).styles(
+        fontSize: 48,
+        fontWeight: TKFontWeight.bold,
+        fontFamily: TKFontFamily.inter,
+      );
+}
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -27,6 +39,9 @@ class FirstPage extends StatelessWidget {
           AtomizeText.displayXL("Display XL").styles(
             color: Colors.red,
             fontWeight: TKFontWeight.bold,
+          ),
+          AtomizeText.displayXL("Display XL 2").styles(
+            fontFamily: TKFontFamily.inter,
           ),
         ],
       ),
