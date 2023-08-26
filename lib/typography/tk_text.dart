@@ -252,7 +252,7 @@ class TKText extends Text {
       );
 }
 
-class AtomizeText extends TKText {
+sealed class AtomizeText extends TKText {
   AtomizeText(super.data);
 
   ///Returns a Display XL text
