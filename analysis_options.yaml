@@ -1,7 +1,8 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer: 
-  exclude: bricks/**
+  exclude: 
+    - bricks/**
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
