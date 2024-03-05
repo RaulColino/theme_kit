@@ -2,21 +2,39 @@
 
 [![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
 
-Create themes you'll enjoy using.
+Create themes you'll enjoy using 🎨.
+
+## Features
+
+- ✅ Easy to use dark and light themes.
+- ✅ Based on Material Design. Don't need to learn anything new.
+- ✅ Customizable colors.
+- ✅ Customizable text styles.
+- ✅ Customizable font families and weights.
+- ✅ No dependencies required.
+
 
 ## Getting Started 🚀
 
-Comming soon...
+To use theme kit follow these steps:
 
+1. Install mason: [https://docs.brickhub.dev/installing](https://docs.brickhub.dev/installing)
 
-## License
+2. Install the theme_kit brick
 
-MIT License
+```bash
+mason add theme_kit
+```
 
-Copyright (c) 2023 Raúl Colino
+3. Generate your theme in the desired directory (p.e. `/packages`) 
+using the following command:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+```bash
+mason make theme_kit
+```
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+4. Follow the instructions to complete the installation.
+```bash
+What is the name of the theme? (theme kit) my theme
+What is the prefix you want to use in your theme classes? use lowercase, no spaces. Recommended to be 2-3 characters long. (tk) mt
+```
