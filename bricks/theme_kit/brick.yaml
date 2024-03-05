@@ -8,7 +8,7 @@ repository: https://github.com/RaulColino/theme_kit
 # The following defines the version and build number for your brick.
 # A version number is three numbers separated by dots, like 1.2.34
 # followed by an optional build number (separated by a +).
-version: 0.1.0+1
+version: 0.1.0+2
 
 # The following defines the environment for the current brick.
 # It includes the version of mason that the brick requires.
@@ -26,8 +26,28 @@ environment:
 #  * a list of values (enums only)
 #  * an optional separator (list only)
 vars:
-  name:
+  theme_name:
     type: string
-    description: Your name
-    default: Dash
-    prompt: What is your name?
+    description: Name of the package to create
+    default: theme kit
+    prompt: What is the name of the theme?
+  prefix:
+    type: string
+    description: Prefix used in all theme classes
+    default: tk
+    prompt: What is the prefix you want to use in your theme classes?
+
+
+# /packages
+#   /lib
+#     /src
+#       {{theme_name}}.dart
+#       /colors
+#         {{prefix}}_color.dart
+#         {{prefix}}_theme.dart
+#       /theme
+#         {{theme_name}}.dart
+#       /typography
+#         {{prefix}}_font_family.dart
+#         {{prefix}}_font_weight.dart
+#         {{prefix}}_text.dart

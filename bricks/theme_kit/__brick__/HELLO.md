@@ -1,1 +1,1 @@
-Hello {{name}}!
+Hello {{theme_name}}!
