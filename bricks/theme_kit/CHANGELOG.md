@@ -1,3 +1,7 @@
+# 1.0.4
+
+- Font family bugfixes.
+
 # 1.0.3
 
 - Documentation bugfixes.

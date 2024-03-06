@@ -74,7 +74,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     TextDecorationStyle? decorationStyle,
     double? decorationThickness,
     String? debugLabel,
-    this.fontFamily = {{prefix.pascalCase()}}FontFamily.inter,
+    this.fontFamily = {{prefix.pascalCase()}}FontFamily.poppins,
     List<String>? fontFamilyFallback,
     this.package,
   }) : super(
