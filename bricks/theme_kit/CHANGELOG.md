@@ -1,3 +1,7 @@
+# 1.0.3
+
+- Documentation bugfixes.
+
 # 1.0.2
 
 - Documentation improvements.
