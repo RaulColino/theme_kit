@@ -2,44 +2,44 @@ import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
 
-import '{{prefix.snakeCase()}}_font_family.dart';
-import '{{prefix.snakeCase()}}_font_weight.dart';
+import 'dv_font_family.dart';
+import 'dv_font_weight.dart';
 
 ///Aura Text widget
-class {{prefix.pascalCase()}}Text extends Text {
+class DvText extends Text {
   //Exclusive attributes of the class
-  final {{prefix.pascalCase()}}FontWeight? fontWeight;
-  final {{prefix.pascalCase()}}FontFamily? fontFamily;
+  final DvFontWeight? fontWeight;
+  final DvFontFamily? fontFamily;
   //Added because TextStyle package is private and doesn't have a getter.
   //We don't need to define a package because we provide font files without declaring a font 
   //in its pubspec.yaml, saving them in the lib/ folder of the package. The font files will 
   //not automatically be bundled in the app, instead the app can use these selectively when declaring a font. 
   final String? package;
 
-  //{{theme_name.pascalCase()}} text types
+  //DevestUi text types
   //Display XL
-  static {{prefix.pascalCase()}}Text displayXL(String data) => {{prefix.pascalCase()}}Text._(data).styles(
+  static DvText displayXL(String data) => DvText._(data).styles(
         fontSize: 96,
-        fontWeight: {{prefix.pascalCase()}}FontWeight.bold,
+        fontWeight: DvFontWeight.bold,
         letterSpacing: -1.5,
       );
 
   //Display L
-  static {{prefix.pascalCase()}}Text displayL(String data) => {{prefix.pascalCase()}}Text._(data).styles(
+  static DvText displayL(String data) => DvText._(data).styles(
         fontSize: 60,
-        fontWeight: {{prefix.pascalCase()}}FontWeight.bold,
+        fontWeight: DvFontWeight.bold,
         letterSpacing: -0.5,
       );
 
   //Body M
-  static {{prefix.pascalCase()}}Text bodyM(String data) => {{prefix.pascalCase()}}Text._(data).styles(
+  static DvText bodyM(String data) => DvText._(data).styles(
         fontSize: 16,
-        fontWeight: {{prefix.pascalCase()}}FontWeight.regular,
+        fontWeight: DvFontWeight.regular,
         letterSpacing: 0.5,
       );
 
   //Constructor
-  {{prefix.pascalCase()}}Text._(
+  DvText._(
     String data, {
     Key? key,
     StrutStyle? strutStyle,
@@ -59,7 +59,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     Color? color,
     Color? backgroundColor,
     double? fontSize = 14,
-    this.fontWeight = {{prefix.pascalCase()}}FontWeight.regular,
+    this.fontWeight = DvFontWeight.regular,
     FontStyle? fontStyle,
     double? letterSpacing = 0.0,
     double? wordSpacing,
@@ -74,7 +74,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     TextDecorationStyle? decorationStyle,
     double? decorationThickness,
     String? debugLabel,
-    this.fontFamily = {{prefix.pascalCase()}}FontFamily.inter,
+    this.fontFamily = DvFontFamily.inter,
     List<String>? fontFamilyFallback,
     this.package,
   }) : super(
@@ -120,7 +120,7 @@ class {{prefix.pascalCase()}}Text extends Text {
         );
 
   //CopyWith
-  {{prefix.pascalCase()}}Text _copyWith({
+  DvText _copyWith({
     String? data,
     Key? key,
     StrutStyle? strutStyle,
@@ -140,7 +140,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     Color? color,
     Color? backgroundColor,
     double? fontSize,
-    {{prefix.pascalCase()}}FontWeight? fontWeight,
+    DvFontWeight? fontWeight,
     FontStyle? fontStyle,
     double? letterSpacing,
     double? wordSpacing,
@@ -155,11 +155,11 @@ class {{prefix.pascalCase()}}Text extends Text {
     TextDecorationStyle? decorationStyle,
     double? decorationThickness,
     String? debugLabel,
-    {{prefix.pascalCase()}}FontFamily? fontFamily,
+    DvFontFamily? fontFamily,
     List<String>? fontFamilyFallback,
     String? package,
   }) {
-    return {{prefix.pascalCase()}}Text._(
+    return DvText._(
       data ?? this.data ?? "",
       key: key ?? this.key,
       strutStyle: strutStyle ?? this.strutStyle,
@@ -200,7 +200,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     );
   }
 
-  {{prefix.pascalCase()}}Text styles({
+  DvText styles({
     Key? key,
     StrutStyle? strutStyle,
     TextAlign? textAlign,
@@ -219,7 +219,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     Color? color,
     Color? backgroundColor,
     double? fontSize,
-    {{prefix.pascalCase()}}FontWeight? fontWeight,
+    DvFontWeight? fontWeight,
     FontStyle? fontStyle,
     double? letterSpacing,
     double? wordSpacing,
@@ -234,7 +234,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     TextDecorationStyle? decorationStyle,
     double? decorationThickness,
     String? debugLabel,
-    {{prefix.pascalCase()}}FontFamily? fontFamily,
+    DvFontFamily? fontFamily,
     List<String>? fontFamilyFallback,
     String? package,
   }) =>
