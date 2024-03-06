@@ -1,16 +1,24 @@
 # Usage of {{theme_name.snakeCase()}}
 
-> [!NOTE]
-> It is recomended to create a `packages` folder in the root of your project, create a 
-> package with the name of the theme (e.g. `packages/{{theme_name.snakeCase()}}`) by running
-> inside the `packages` folder the following command:
-> 
-> ```bash
-> flutter create --template=package {{theme_name.snakeCase()}}
-> ```
-> 
-> Then, run mason make theme_kit inside {{/packages/{{theme_name.snakeCase()}}}} to 
-> generate the necessary files. This way, you can use the theme in multiple projects.
+It is recomended to create a `packages` folder in the root of your project, create a 
+package with the name of the theme (e.g. `packages/{{theme_name.snakeCase()}}`) by running
+inside the `packages` folder the following command:
+
+```bash
+flutter create --org com.{{theme_name.paramCase()}} --template=package {{theme_name.snakeCase()}}
+```
+
+Then, run mason make theme_kit inside `/packages/{{theme_name.snakeCase()}}` to 
+generate the necessary files.
+
+After that, you can use the theme in your app like normal local package. Go to the pubspec.yaml of 
+the app (root project) and add the following line to the `dependencies` section:
+
+```yaml
+dependencies:
+  {{theme_name.snakeCase()}}:
+    path: packages/{{theme_name.snakeCase()}}
+```
 
 To use the fonts from {{theme_name.snakeCase()}}, you can define the fonts you want to 
 use in the `pubspec.yaml` file of the app (root project). Here's an example of how you can define the fonts:
@@ -31,7 +39,6 @@ fonts:
 
 Now, you are ready to use the theme in your app. You can use the theme in the `MaterialApp` widget like this:
 
-```dart
 ```dart
 import 'package:flutter/material.dart';
 import 'package:{{theme_name.snakeCase()}}/{{theme_name.snakeCase()}}.dart';
@@ -142,5 +149,4 @@ class ThemeSettings extends StatelessWidget {
     );
   }
 }
-```
 ```

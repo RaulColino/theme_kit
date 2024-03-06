@@ -35,7 +35,7 @@ inside the `packages` folder the following command with the name of the theme (e
 flutter create --template=package my_theme
 ```
     
-4. Then, inside the package folder (e.g. `packages/my_theme`),
+4. Then, inside the package folder (e.g. `/packages`),
 run mason make theme_kit to replace and generate the necessary files for 
 the theme.
 
@@ -43,10 +43,18 @@ the theme.
 mason make theme_kit
 ```
 
-5. Follow the instructions to complete the installation.
+5. Follow the instructions to complete the installation. Make sure the name of the theme is the same as the package name.
 ```bash
 What is the name of the theme? (theme kit) my theme
 What is the prefix you want to use in your theme classes? use lowercase, no spaces. Recommended to be 2-3 characters long. (tk) mt
+```
+After creating the theme package, go to the pubspec.yaml of the app (root project) and import it in the `dependencies` section. For example if the theme package name is `my_theme` 
+it should look like this:
+
+```yaml
+dependencies:
+  my_theme:
+    path: packages/my_theme
 ```
 
 6. To use the fonts defined in the theme, you can define the fonts you want to 
