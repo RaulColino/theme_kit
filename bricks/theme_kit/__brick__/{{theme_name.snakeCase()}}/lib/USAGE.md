@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return {{theme_name.pascalCase()}}Theme(
+    return {{theme_name.pascalCase()}}(
       lightTheme: _lightTheme,
       darkTheme: _darkTheme,
       child: MaterialApp(
