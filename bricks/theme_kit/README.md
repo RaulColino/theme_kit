@@ -6,12 +6,14 @@ Create themes you'll enjoy using 🎨.
 
 ## Features
 
-- ✅ Easy to use dark and light themes.
-- ✅ Based on Material Design. Don't need 
-to learn anything new. Combine it with Material Components seamlessly.
-- ✅ Customizable colors.
-- ✅ Customizable text styles, font families and font weights.
+- ✅ Easy to set dark and light themes.
+- ✅ Use your own custom theme tokens on top of Material Design.
+- ✅ Easy to use, just import the theme and use it in your Material components + autocompletion available for every theme token + custom documentation file automatically generated for your theme.
+- ✅ Fully customizable, the generated code is editable and yours!
+- ✅ Includes definition of colors, text styles, font families and font weights.
+- ✅ Reusable. The theme is generated in a separate package that can be shared across multiple projects.
 - ✅ No dependencies required.
+- ✅ No build runner needed 😉.
 
 
 ## Getting Started 🚀
@@ -36,14 +38,14 @@ flutter create --template=package my_theme
 ```
     
 4. Then, inside the package folder (e.g. `/packages`),
-run mason make theme_kit to replace and generate the necessary files for 
+run `mason make theme_kit` to replace and generate the necessary files for 
 the theme.
 
 ```bash
 mason make theme_kit
 ```
 
-5. Follow the instructions to complete the installation. Make sure the name of the theme is the same as the package name.
+5. Follow the instructions to complete the installation. Make sure the name of the theme is the same as the package name. For example, in this case we use `my theme` as the theme name and `mt` as the prefix.
 ```bash
 What is the name of the theme? (theme kit) my theme
 What is the prefix you want to use in your theme classes? use lowercase, no spaces. Recommended to be 2-3 characters long. (tk) mt
