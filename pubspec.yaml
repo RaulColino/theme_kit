@@ -1,7 +1,7 @@
 name: theme_kit
 description: Make theming with your custom Design System enjoyable.
-version: 1.0.1
-brick: "https://brickhub.dev/bricks/theme_kit/"
+version: 1.0.0
+homepage: "https://brickhub.dev/bricks/theme_kit/"
 repository: "https://github.com/RaulColino/theme_kit"
 
 environment:
