@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Added homepage to readme
+
 ## 1.0.1
 
 * Documentation fixes
