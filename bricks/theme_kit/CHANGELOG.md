@@ -1,3 +1,9 @@
+# 2.0.0
+
+- Updated mason version from 0.1.0 to 0.1.1
+- Updated Flutter SDK from 3.1.0 to 3.7.0
+
+
 # 1.0.5
 
 - Documentation improvements.

@@ -1,34 +1,38 @@
-# theme_kit
+# Theme Kit
 
 [![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
 
 Create themes you'll enjoy using 🎨.
 
-## Features
+## Features ✨
 
 - ✅ Easy to set dark and light themes.
 - ✅ Use your own custom theme tokens on top of Material Design.
-- ✅ Easy to use, just import the theme and use it in your Material components + autocompletion available for every theme token + custom documentation file automatically generated for your theme.
+- ✅ Import your theme and seamlessly apply it to Material components.
+- ✅ Enjoy autocompletion for every theme token.
 - ✅ Fully customizable, the generated code is editable and yours!
 - ✅ Includes definition of colors, text styles, font families and font weights.
 - ✅ Reusable. The theme is generated in a separate package that can be shared across multiple projects.
 - ✅ No dependencies required.
 - ✅ No build runner needed 😉.
 
-
 ## Getting Started 🚀
 
 To use theme kit follow these steps:
 
-1. Install mason: [https://docs.brickhub.dev/installing](https://docs.brickhub.dev/installing)
+1. Install mason: [https://docs.brickhub.dev/installing](https://docs.brickhub.dev/installing). Then, make sure to have mason initialized in your Flutter project by running in the root of your project:
 
-2. Install the theme_kit brick
+```bash
+mason init
+```
+
+2. Install the theme_kit brick:
 
 ```bash
 mason add theme_kit
 ```
 
-3. Generate your theme in the desired directory (p.e. `/packages`) 
+3. Generate your theme in the desired directory (e.g. `/packages`). 
 It is recomended to create a `packages` folder in the root of your Flutter project, create a 
 package with the name of the theme (e.g. `packages/my_theme`) by running 
 inside the `packages` folder the following command with the name of the theme (e.g. `my_theme`):
@@ -50,7 +54,7 @@ mason make theme_kit
 What is the name of the theme? (theme kit) my theme
 What is the prefix you want to use in your theme classes? use lowercase, no spaces. Recommended to be 2-3 characters long. (tk) mt
 ```
-After creating the theme package, go to the pubspec.yaml of the app (root project) and import it in the `dependencies` section. For example if the theme package name is `my_theme` 
+After creating the theme package, go to the pubspec.yaml of the app (root project) and import it in the `dependencies` section. For example, if the theme package name is `my_theme`, 
 it should look like this:
 
 ```yaml
@@ -191,3 +195,49 @@ class ThemeSettings extends StatelessWidget {
   }
 }
 ```
+## Generated Files 📁
+
+If for example, you name your theme `my theme`, use the prefix `mt` and create the theme as a package, the generated files will look like this:
+
+```plaintext
+packages/
+└── my_theme
+    ├── CHANGELOG.md
+    ├── LICENSE
+    ├── README.md
+    ├── analysis_options.yaml
+    ├── lib
+    │   ├── USAGE.md
+    │   ├── fonts
+    │   │   ├── Poppins-Bold.ttf
+    │   │   ├── Poppins-Medium.ttf
+    │   │   ├── Poppins-Regular.ttf
+    │   │   └── Poppins-SemiBold.ttf
+    │   ├── my_theme.dart
+    │   └── src
+    │       ├── colors
+    │       │   ├── mt_color.dart
+    │       │   └── mt_theme.dart
+    │       ├── theme
+    │       │   └── my_theme.dart
+    │       └── typography
+    │           ├── mt_font_family.dart
+    │           ├── mt_font_weight.dart
+    │           └── mt_text.dart
+    ├── my_theme.iml
+    ├── pubspec.lock
+    ├── pubspec.yaml
+    └── test
+```
+
+## License
+
+MIT License
+
+Copyright (c) 2025 Raúl Colino
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

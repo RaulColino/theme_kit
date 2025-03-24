@@ -17,53 +17,59 @@ and the Flutter guide for
 
 Create themes you'll enjoy using 🎨.
 
-## Features
+## Features ✨
 
 - ✅ Easy to set dark and light themes.
 - ✅ Use your own custom theme tokens on top of Material Design.
-- ✅ Easy to use, just import the theme and use it in your Material components + autocompletion available for every theme token + custom documentation file automatically generated for your theme.
+- ✅ Import your theme and seamlessly apply it to Material components.
+- ✅ Enjoy autocompletion for every theme token.
 - ✅ Fully customizable, the generated code is editable and yours!
 - ✅ Includes definition of colors, text styles, font families and font weights.
 - ✅ Reusable. The theme is generated in a separate package that can be shared across multiple projects.
 - ✅ No dependencies required.
 - ✅ No build runner needed 😉.
 
-
 ## Getting Started 🚀
 
 To use theme kit follow these steps:
 
-1. Install mason: [https://docs.brickhub.dev/installing](https://docs.brickhub.dev/installing)
+1. Install mason: [https://docs.brickhub.dev/installing](https://docs.brickhub.dev/installing). Then, make sure to have mason initialized in your Flutter project by running in the root of your project:
 
-2. Install the theme_kit brick
+```bash
+mason init
+```
+
+2. Install the theme_kit brick:
 
 ```bash
 mason add theme_kit
 ```
 
-3. Generate your theme in the desired directory (p.e. `/packages`) 
-It is recomended to create a `packages` folder in the root of your Flutter project, create a 
-package with the name of the theme (e.g. `packages/my_theme`) by running 
-inside the `packages` folder the following command with the name of the theme (e.g. `my_theme`):
+3. Generate your theme in the desired directory (e.g. `/packages`).
+   It is recomended to create a `packages` folder in the root of your Flutter project, create a
+   package with the name of the theme (e.g. `packages/my_theme`) by running
+   inside the `packages` folder the following command with the name of the theme (e.g. `my_theme`):
 
 ```bash
 flutter create --template=package my_theme
 ```
-    
+
 4. Then, inside the package folder (e.g. `/packages`),
-run `mason make theme_kit` to replace and generate the necessary files for 
-the theme.
+   run `mason make theme_kit` to replace and generate the necessary files for
+   the theme.
 
 ```bash
 mason make theme_kit
 ```
 
 5. Follow the instructions to complete the installation. Make sure the name of the theme is the same as the package name. For example, in this case we use `my theme` as the theme name and `mt` as the prefix.
+
 ```bash
 What is the name of the theme? (theme kit) my theme
 What is the prefix you want to use in your theme classes? use lowercase, no spaces. Recommended to be 2-3 characters long. (tk) mt
 ```
-After creating the theme package, go to the pubspec.yaml of the app (root project) and import it in the `dependencies` section. For example if the theme package name is `my_theme` 
+
+After creating the theme package, go to the pubspec.yaml of the app (root project) and import it in the `dependencies` section. For example, if the theme package name is `my_theme`,
 it should look like this:
 
 ```yaml
@@ -72,8 +78,8 @@ dependencies:
     path: packages/my_theme
 ```
 
-6. To use the fonts defined in the theme, you can define the fonts you want to 
-use in the `pubspec.yaml` file of your app (root project). Here's an example of how you can define the fonts:
+6. To use the fonts defined in the theme, you can define the fonts you want to
+   use in the `pubspec.yaml` file of your app (root project). Here's an example of how you can define the fonts:
 
 ```yaml
 fonts:
@@ -89,8 +95,8 @@ fonts:
         weight: 700
 ```
 
-7. Now, you can use the theme like this (this example uses `my theme` as the theme name 
-and `mt` as the prefix):
+7. Now, you can use the theme like this (this example uses `my theme` as the theme name
+   and `mt` as the prefix):
 
 ```dart
 import 'package:flutter/material.dart';
@@ -205,11 +211,46 @@ class ThemeSettings extends StatelessWidget {
 }
 ```
 
-# License
+## Generated Files 📁
+
+If for example, you name your theme `my theme`, use the prefix `mt` and create the theme as a package, the generated files will look like this:
+
+```plaintext
+packages/
+└── my_theme
+    ├── CHANGELOG.md
+    ├── LICENSE
+    ├── README.md
+    ├── analysis_options.yaml
+    ├── lib
+    │   ├── USAGE.md
+    │   ├── fonts
+    │   │   ├── Poppins-Bold.ttf
+    │   │   ├── Poppins-Medium.ttf
+    │   │   ├── Poppins-Regular.ttf
+    │   │   └── Poppins-SemiBold.ttf
+    │   ├── my_theme.dart
+    │   └── src
+    │       ├── colors
+    │       │   ├── mt_color.dart
+    │       │   └── mt_theme.dart
+    │       ├── theme
+    │       │   └── my_theme.dart
+    │       └── typography
+    │           ├── mt_font_family.dart
+    │           ├── mt_font_weight.dart
+    │           └── mt_text.dart
+    ├── my_theme.iml
+    ├── pubspec.lock
+    ├── pubspec.yaml
+    └── test
+```
+
+## License
 
 MIT License
 
-Copyright (c) 2023 Raúl Colino
+Copyright (c) 2025 Raúl Colino
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

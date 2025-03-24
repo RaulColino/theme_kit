@@ -13,9 +13,11 @@ sealed class AtomizeText extends TKText {
       );
 }
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FirstPage(),
+      home: const FirstPage(),
     );
   }
 }
@@ -34,16 +36,18 @@ class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          AtomizeText.displayXL("Display XL").styles(
-            color: Colors.red,
-            fontWeight: TKFontWeight.bold,
-          ),
-          AtomizeText.displayXL("Display XL 2").styles(
-            fontFamily: TKFontFamily.inter,
-          ),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            AtomizeText.displayXL("Display XL").styles(
+              color: Colors.red,
+              fontWeight: TKFontWeight.bold,
+            ),
+            AtomizeText.displayXL("Display XL 2").styles(
+              fontFamily: TKFontFamily.inter,
+            ),
+          ],
+        ),
       ),
     );
   }

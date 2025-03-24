@@ -1,19 +1,19 @@
 name: theme_kit
-description: Make theming with your custom Design System enjoyable.
+description: A new brick created with the Mason CLI.
 
 # The following defines the brick repository url.
 # Uncomment and update the following line before publishing the brick.
-repository: https://github.com/RaulColino/theme_kit
+# repository: https://github.com/my_org/my_repo
 
 # The following defines the version and build number for your brick.
 # A version number is three numbers separated by dots, like 1.2.34
 # followed by an optional build number (separated by a +).
-version: 1.0.5
+version: 2.0.0
 
 # The following defines the environment for the current brick.
 # It includes the version of mason that the brick requires.
 environment:
-  mason: ">=0.1.0-dev.51 <0.1.0"
+  mason: ^0.1.1
 
 # Variables specify dynamic values that your brick depends on.
 # Zero or more variables can be specified for a given brick.
@@ -36,6 +36,11 @@ vars:
     description: Prefix, in lowercase without spaces, used in all theme classes. Recommended to be 2-3 characters long.
     default: tk
     prompt: What is the prefix you want to use in your theme classes? use lowercase, no spaces. Recommended to be 2-3 characters long.
+  create_as_package:
+    type: boolean
+    description: "Create the theme as a package inside the project"
+    default: true
+    prompt: "Do you want to create the theme as a package? (recommended)"
 
 
 # /packages

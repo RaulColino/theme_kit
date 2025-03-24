@@ -1,18 +1,18 @@
 # Usage of {{theme_name.snakeCase()}}
 
-It is recomended to create a `packages` folder in the root of your project, create a 
-package with the name of the theme (e.g. `packages/{{theme_name.snakeCase()}}`) by running
-inside the `packages` folder the following command:
+🎉 Congratulations! You've successfully built your custom theme with Theme Kit!
 
+Now, before using it in your app, it is recomended to use it as a package so 
+you can manage your themes separately from your app. Just run the following command 
+and go to `packages/{{theme_name.snakeCase()}}/lib/USAGE.md` to see how to 
+use the theme in your app.
 ```bash
-flutter create --org com.{{theme_name.paramCase()}} --template=package {{theme_name.snakeCase()}}
+flutter create --org com.{{theme_name.paramCase()}} --template=package packages/{{theme_name.snakeCase()}} && cp -r {{theme_name.snakeCase()}} packages/ && rm -r {{theme_name.snakeCase()}}
 ```
 
-Then, run mason make theme_kit inside `/packages/{{theme_name.snakeCase()}}` to 
-generate the necessary files.
-
-After that, you can use the theme in your app like normal local package. Go to the pubspec.yaml of 
-the app (root project) and add the following line to the `dependencies` section:
+Thats it! Now you're ready to use the theme 🚀! Use the theme in your app like a normal local package. Go to 
+the `pubspec.yaml` of the app (root project) and add the following 
+line to the `dependencies` section:
 
 ```yaml
 dependencies:
@@ -105,7 +105,7 @@ class Home extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const ThemeSettings(),
-         {{prefix.pascalCase()}}Text.displayXL("Display XL").styles(
+          {{prefix.pascalCase()}}Text.displayXL("Display XL").styles(
             color: {{prefix.pascalCase()}}Color.secondary,
             fontWeight: {{prefix.pascalCase()}}FontWeight.bold,
           ),
@@ -150,3 +150,14 @@ class ThemeSettings extends StatelessWidget {
   }
 }
 ```
+
+If you want to customize the theme tokens and fonts, you can edit the following files:
+
+- Color tokens: `/packages/{{theme_name.snakeCase()}}/lib/src/colors/{{prefix.snakeCase()}}_color.dart`
+- Text tokens: `/packages/{{theme_name.snakeCase()}}/lib/src/typography/{{prefix.snakeCase()}}_text.dart`
+- Font families*: `/packages/{{theme_name.snakeCase()}}/lib/src/typography/{{prefix.snakeCase()}}_font_family.dart`
+- Font weights: `/packages/{{theme_name.snakeCase()}}/lib/src/typography/{{prefix.snakeCase()}}_font_weight.dart`
+
+*If you want to use custom fonts, you can add the font files to 
+the `/packages/{{theme_name.snakeCase()}}/lib/fonts` folder. Then, you can define the font families in 
+`/packages/{{theme_name.snakeCase()}}/lib/src/typography/{{prefix.snakeCase()}}_font_family.dart`.
