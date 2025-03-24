@@ -1,9 +1,9 @@
 name: theme_kit
-description: A new brick created with the Mason CLI.
+description: Make theming with your custom Design System enjoyable. Theme Kit lets you create custom themes that are a breeze to use and maintain.
 
 # The following defines the brick repository url.
 # Uncomment and update the following line before publishing the brick.
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/RaulColino/theme_kit
 
 # The following defines the version and build number for your brick.
 # A version number is three numbers separated by dots, like 1.2.34
