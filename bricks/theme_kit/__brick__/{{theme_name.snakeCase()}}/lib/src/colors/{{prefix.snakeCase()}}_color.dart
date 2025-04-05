@@ -5,13 +5,13 @@ import 'dart:ui';
 // import 'a_theme.dart';
 import '{{prefix.snakeCase()}}_theme.dart';
 
-//You can't exclude this file from the dart formatter because the Flutter team has not implemented this feature yet -_-
+// You can't exclude this file from the dart formatter because the Flutter team has not implemented this feature yet -_-
 class {{prefix.pascalCase()}}Color {
-  //Exceptions
+  // Exceptions
   static final Exception _themekitWidgetException = Exception("Theme Kit ERROR: {{theme_name.pascalCase()}} widget not created. Please wrap your app with the {{theme_name.pascalCase()}} widget. Check Theme Kit docs for more info.");
   static final Exception _colorNullException = Exception("Theme Kit ERROR: Color cannot be null.");
 
-  //{{theme_name.pascalCase()}} semantic colors
+  // {{theme_name.pascalCase()}} semantic colors
   static Color? _primary;
   static Color? _secondary;
   static Color? _success;
@@ -26,7 +26,7 @@ class {{prefix.pascalCase()}}Color {
   static Color? _divider;
   static Color? _border;
 
-  //Getters
+  // Getters
   static Color get primary { if (_primary == null) throw _themekitWidgetException; else return _primary!; }
   static Color get secondary { if (_secondary == null) throw _themekitWidgetException; else return _secondary!; }
   static Color get success { if (_success == null) throw _themekitWidgetException; else return _success!; }
@@ -41,7 +41,7 @@ class {{prefix.pascalCase()}}Color {
   static Color get divider { if (_divider == null) throw _themekitWidgetException; else return _divider!; }
   static Color get border { if (_border == null) throw _themekitWidgetException; else return _border!; }
 
-  //Setters
+  // Setters
   static set primary(Color? color) { if (color == null) throw _colorNullException; else _primary = color; }
   static set secondary(Color? color) { if (color == null) throw _colorNullException; else _secondary = color; }
   static set success(Color? color) { if (color == null) throw _colorNullException; else _success = color; }
@@ -56,7 +56,7 @@ class {{prefix.pascalCase()}}Color {
   static set divider(Color? color) { if (color == null) throw _colorNullException; else _divider = color; }
   static set border(Color? color) { if (color == null) throw _colorNullException; else _border = color; }
 
-  //Constructor
+  // Constructor
   {{prefix.pascalCase()}}Color._();
 
   static void setTheme({{prefix.pascalCase()}}Theme theme) {

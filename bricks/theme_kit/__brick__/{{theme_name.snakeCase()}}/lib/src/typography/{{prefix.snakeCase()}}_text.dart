@@ -25,29 +25,29 @@ class {{prefix.pascalCase()}}Text extends Text {
   // not automatically be bundled in the app, instead the app can use these selectively when declaring a font. 
   final String? package;
 
-  //{{theme_name.pascalCase()}} text types
-  //Display XL
+  // {{theme_name.pascalCase()}} text types
+  // Display XL
   static {{prefix.pascalCase()}}Text displayXL(String data) => {{prefix.pascalCase()}}Text._(data).styles(
         fontSize: 96,
         fontWeight: {{prefix.pascalCase()}}FontWeight.bold,
         letterSpacing: -1.5,
       );
 
-  //Display L
+  // Display L
   static {{prefix.pascalCase()}}Text displayL(String data) => {{prefix.pascalCase()}}Text._(data).styles(
         fontSize: 60,
         fontWeight: {{prefix.pascalCase()}}FontWeight.bold,
         letterSpacing: -0.5,
       );
 
-  //Body M
+  // Body M
   static {{prefix.pascalCase()}}Text bodyM(String data) => {{prefix.pascalCase()}}Text._(data).styles(
         fontSize: 16,
         fontWeight: {{prefix.pascalCase()}}FontWeight.regular,
         letterSpacing: 0.5,
       );
 
-  //Constructor
+  // Constructor
   {{prefix.pascalCase()}}Text._(
     String data, {
     Key? key,
@@ -128,7 +128,7 @@ class {{prefix.pascalCase()}}Text extends Text {
           selectionColor: selectionColor,
         );
 
-  //CopyWith
+  // CopyWith
   {{prefix.pascalCase()}}Text _copyWith({
     String? data,
     Key? key,
