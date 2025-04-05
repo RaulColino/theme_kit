@@ -1,19 +1,28 @@
-import 'dart:ui';
-
 import 'package:flutter/widgets.dart';
 
 import '{{prefix.snakeCase()}}_font_family.dart';
 import '{{prefix.snakeCase()}}_font_weight.dart';
+import '../colors/{{prefix.snakeCase()}}_color.dart';
 
-///Aura Text widget
+/// Theme Kit Text widget
+/// A custom wrapper for the standard Flutter `Text` widget.
+/// It provides a more efficient way to define text styles and text attributes. E.g.:
+/// ```dart
+/// {{prefix.pascalCase()}}Text.bodyM("Hello World").styles(
+///   color: {{prefix.pascalCase()}}Color.primary,
+///   fontWeight: {{prefix.pascalCase()}}FontWeight.bold,
+///   overflow: TextOverflow.ellipsis,
+///   maxLines: 2,
+/// );
+/// ```
 class {{prefix.pascalCase()}}Text extends Text {
-  //Exclusive attributes of the class
+  // Exclusive attributes of the class
   final {{prefix.pascalCase()}}FontWeight? fontWeight;
   final {{prefix.pascalCase()}}FontFamily? fontFamily;
-  //Added because TextStyle package is private and doesn't have a getter.
-  //We don't need to define a package because we provide font files without declaring a font 
-  //in its pubspec.yaml, saving them in the lib/ folder of the package. The font files will 
-  //not automatically be bundled in the app, instead the app can use these selectively when declaring a font. 
+  // Added because TextStyle package is private and doesn't have a getter.
+  // We don't need to define a package because we provide font files without declaring a font 
+  // in its pubspec.yaml, saving them in the lib/ folder of the package. The font files will 
+  // not automatically be bundled in the app, instead the app can use these selectively when declaring a font. 
   final String? package;
 
   //{{theme_name.pascalCase()}} text types
@@ -82,7 +91,7 @@ class {{prefix.pascalCase()}}Text extends Text {
           key: key,
           style: TextStyle(
             inherit: inherit ?? true,
-            color: color,
+            color: color ?? {{prefix.pascalCase()}}Color.textPrimary,
             backgroundColor: backgroundColor,
             fontSize: fontSize,
             fontWeight: fontWeight?.value,
