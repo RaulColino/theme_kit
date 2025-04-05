@@ -4,9 +4,8 @@ import '{{prefix.snakeCase()}}_font_family.dart';
 import '{{prefix.snakeCase()}}_font_weight.dart';
 import '../colors/{{prefix.snakeCase()}}_color.dart';
 
-/// Theme Kit Text widget
-/// A custom wrapper for the standard Flutter `Text` widget.
-/// It provides a more efficient way to define text styles and text attributes. E.g.:
+/// Theme Kit Text widget. A custom wrapper for the standard Flutter `Text` widget. 
+/// It provides a streamlined way to define text styles and text attributes. For example:
 /// ```dart
 /// {{prefix.pascalCase()}}Text.bodyM("Hello World").styles(
 ///   color: {{prefix.pascalCase()}}Color.primary,
