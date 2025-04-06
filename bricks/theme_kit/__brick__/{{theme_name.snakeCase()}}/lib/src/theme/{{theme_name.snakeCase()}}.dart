@@ -45,7 +45,7 @@ class {{theme_name.pascalCase()}} extends StatefulWidget {
       _themeKitStateGlobalKey.currentState!
           .setState(() {}); // ignore: invalid_use_of_protected_member
     } catch (e) {
-      // The current state (_auraUIKey.currentState) is null if there is no widget in the tree that
+      // The current state (_themeKitStateGlobalKey.currentState) is null if there is no widget in the tree that
       // matches the global key: _themeKitStateGlobalKey, which means that the {{theme_name.pascalCase()}} widget is not in the widget tree.
       throw Exception("Theme Kit ERROR: {{theme_name.pascalCase()}} widget not found in the widget tree.");
     }
