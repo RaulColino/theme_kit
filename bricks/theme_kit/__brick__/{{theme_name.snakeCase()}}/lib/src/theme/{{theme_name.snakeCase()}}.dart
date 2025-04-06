@@ -26,10 +26,10 @@ class {{theme_name.pascalCase()}} extends StatefulWidget {
     required {{prefix.pascalCase()}}Theme darkTheme,
     required this.child,
   }) : super(key: _themeKitStateGlobalKey) {
+    _lightTheme = lightTheme;
+    _darkTheme = darkTheme;
     // If theme not set, set the light theme
     if (_currentThemeType == null) {
-      _lightTheme = lightTheme;
-      _darkTheme = darkTheme;
       //Set light theme as default
       _currentThemeType = ThemeType.light;
       {{prefix.pascalCase()}}Color.setTheme(lightTheme);
