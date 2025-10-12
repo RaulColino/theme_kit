@@ -31,3 +31,7 @@ build/
 
 # FVM Version Cache
 .fvm/
+
+# Theme Kit generated files (for testing)
+lib/theme/
+lib/gen/

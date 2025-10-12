@@ -1,0 +1,50 @@
+# Theme Kit Configuration Example
+name: app_theme
+prefix: at
+description: Example app theme using Theme Kit 3.0
+
+font_families:
+  - Inter
+  - Roboto
+
+font_weights:
+  - name: regular
+    weight: 400
+  - name: medium
+    weight: 500
+  - name: semibold
+    weight: 600
+  - name: bold
+    weight: 700
+
+colors:
+  primary:
+    description: Primary brand color
+  secondary:
+    description: Secondary brand color
+  success:
+    description: Success state color
+  error:
+    description: Error state color
+  background:
+    description: Background color
+  surface:
+    description: Surface color
+  textPrimary:
+    description: Primary text color
+  textSecondary:
+    description: Secondary text color
+
+text_styles:
+  - name: displayXL
+    font_size: 48.0
+  - name: displayL
+    font_size: 36.0
+  - name: headingL
+    font_size: 28.0
+  - name: bodyM
+    font_size: 16.0
+  - name: bodyS
+    font_size: 14.0
+  - name: labelM
+    font_size: 12.0
