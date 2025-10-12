@@ -1,6 +1,15 @@
 library theme_kit;
 
-//Typography
-export 'src/typography/tk_font_family.dart';
-export 'src/typography/tk_font_weight.dart';
-export 'src/typography/tk_text.dart';
+// Configuration
+export 'src/config/theme_config.dart';
+
+// Generator
+export 'src/generator/theme_generator.dart';
+
+// Templates
+export 'src/templates/font_family_template.dart';
+export 'src/templates/font_weight_template.dart';
+export 'src/templates/color_template.dart';
+export 'src/templates/theme_class_template.dart';
+export 'src/templates/text_widget_template.dart';
+export 'src/templates/main_theme_template.dart';

@@ -1,7 +1,7 @@
 name: theme_kit
 description: Make theming with your custom Design System quick and enjoyable.
-version: 1.0.2
-homepage: "https://brickhub.dev/bricks/theme_kit/"
+version: 3.0.0
+homepage: "https://pub.dev/packages/theme_kit"
 repository: "https://github.com/RaulColino/theme_kit"
 
 environment:
@@ -11,11 +11,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  args: ^2.4.0
+  yaml: ^3.1.0
+  path: ^1.8.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+
+executables:
+  theme_kit: generate
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

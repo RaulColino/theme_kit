@@ -1,0 +1,92 @@
+# Theme Kit Configuration
+# This file defines your theme configuration for code generation
+
+# Theme name (will be converted to snake_case for file names)
+name: my_theme
+
+# Prefix for generated classes (recommended 2-3 characters)
+prefix: mt
+
+# Optional description
+description: My custom theme for Flutter app
+
+# Font families to include in the theme
+# Default: [Inter]
+font_families:
+  - Inter
+  - Poppins
+  - Roboto
+
+# Font weights to include in the theme
+# Default: regular (400), medium (500), semibold (600), bold (700)
+font_weights:
+  - name: regular
+    weight: 400
+  - name: medium
+    weight: 500
+  - name: semibold
+    weight: 600
+  - name: bold
+    weight: 700
+
+# Color tokens for the theme
+# These will be available as static getters in the generated Color class
+colors:
+  primary:
+    description: Primary brand color
+  secondary:
+    description: Secondary brand color
+  success:
+    description: Success state color
+  warning:
+    description: Warning state color
+  error:
+    description: Error state color
+  info:
+    description: Info state color
+  background:
+    description: Background color
+  surface100:
+    description: Surface color level 1
+  surface200:
+    description: Surface color level 2
+  textPrimary:
+    description: Primary text color
+  textSecondary:
+    description: Secondary text color
+  divider:
+    description: Divider color
+  border:
+    description: Border color
+
+# Text styles with default font sizes
+# Default: displayXL through labelS
+text_styles:
+  - name: displayXL
+    font_size: 48.0
+  - name: displayL
+    font_size: 36.0
+  - name: displayM
+    font_size: 28.0
+  - name: displayS
+    font_size: 24.0
+  - name: headingXL
+    font_size: 32.0
+  - name: headingL
+    font_size: 28.0
+  - name: headingM
+    font_size: 24.0
+  - name: headingS
+    font_size: 20.0
+  - name: bodyL
+    font_size: 18.0
+  - name: bodyM
+    font_size: 16.0
+  - name: bodyS
+    font_size: 14.0
+  - name: labelL
+    font_size: 14.0
+  - name: labelM
+    font_size: 12.0
+  - name: labelS
+    font_size: 10.0
