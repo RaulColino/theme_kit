@@ -1,7 +1,7 @@
 library theme_kit;
 
 // Configuration
-export 'src/config/theme_config.dart';
+export 'src/config/theme_config.dart' show ThemeConfig, ConfigurationException, FontWeight, ColorToken, TextStyle;
 
 // Generator
 export 'src/generator/theme_generator.dart';

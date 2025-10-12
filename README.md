@@ -7,6 +7,10 @@ Create themes you'll enjoy using 🎨.
 > 🎉 **New to Theme Kit 3.0?** Check out [What's New](WHATS_NEW.md) for a complete overview of changes.
 > 
 > 🚀 **Want to get started quickly?** See the [Quick Start Guide](QUICKSTART.md).
+>
+> 📚 **Need detailed API documentation?** Check the [API Reference](API.md).
+>
+> 🔄 **Migrating from 2.x?** Read the [Migration Guide](MIGRATION.md).
 
 ## Features ✨
 
