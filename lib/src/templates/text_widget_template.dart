@@ -1,53 +1,41 @@
+import '../config/theme_config.dart';
+
+/// Template for generating the text widget class
+class TextWidgetTemplate {
+  static String generate(ThemeConfig config) {
+    final className = '${config.prefix.toUpperCase()}Text';
+    final fontWeightClass = '${config.prefix.toUpperCase()}FontWeight';
+    final fontFamilyClass = '${config.prefix.toUpperCase()}FontFamily';
+
+    // Generate factory constructors for each text style
+    final factories = config.textStyles.map((style) {
+      final fontSize = style.fontSize ?? 14.0;
+      return '''
+  /// Returns a ${style.name} text
+  static $className ${style.name}(String data) => $className(data).styles(
+        fontSize: $fontSize,
+        fontWeight: $fontWeightClass.regular,
+        fontFamily: $fontFamilyClass.${_getDefaultFontFamily(config)},
+      );''';
+    }).join('\n\n');
+
+    return '''
+import 'dart:ui';
+
 import 'package:flutter/widgets.dart';
 
-import '{{prefix.snakeCase()}}_font_family.dart';
-import '{{prefix.snakeCase()}}_font_weight.dart';
-import '../colors/{{prefix.snakeCase()}}_color.dart';
+import '${config.prefix}_font_family.dart';
+import '${config.prefix}_font_weight.dart';
 
-/// A custom wrapper for the standard Flutter `Text` widget. 
-/// It provides a streamlined way to define text styles and text attributes. For example:
-/// ```dart
-/// {{prefix.pascalCase()}}Text.bodyM("Hello World").styles(
-///   color: {{prefix.pascalCase()}}Color.primary,
-///   fontWeight: {{prefix.pascalCase()}}FontWeight.bold,
-///   overflow: TextOverflow.ellipsis,
-///   maxLines: 2,
-/// );
-/// ```
-class {{prefix.pascalCase()}}Text extends Text {
-  // Exclusive attributes of the class
-  final {{prefix.pascalCase()}}FontWeight? fontWeight;
-  final {{prefix.pascalCase()}}FontFamily? fontFamily;
-  // Added because TextStyle package is private and doesn't have a getter.
-  // We don't need to define a package because we provide font files without declaring a font 
-  // in its pubspec.yaml, saving them in the lib/ folder of the package. The font files will 
-  // not automatically be bundled in the app, instead the app can use these selectively when declaring a font. 
-  final String? package;
+/// Text widget for ${config.name} theme
+class $className extends Text {
+  //Exclusive attributes of the class
+  final $fontWeightClass? fontWeight;
+  final $fontFamilyClass? fontFamily;
+  final String? package; //Added because TextStyle package is private and doesn't have a getter
 
-  // {{theme_name.pascalCase()}} text types
-  // Display XL
-  static {{prefix.pascalCase()}}Text displayXL(String data) => {{prefix.pascalCase()}}Text._(data).styles(
-        fontSize: 96,
-        fontWeight: {{prefix.pascalCase()}}FontWeight.bold,
-        letterSpacing: -1.5,
-      );
-
-  // Display L
-  static {{prefix.pascalCase()}}Text displayL(String data) => {{prefix.pascalCase()}}Text._(data).styles(
-        fontSize: 60,
-        fontWeight: {{prefix.pascalCase()}}FontWeight.bold,
-        letterSpacing: -0.5,
-      );
-
-  // Body M
-  static {{prefix.pascalCase()}}Text bodyM(String data) => {{prefix.pascalCase()}}Text._(data).styles(
-        fontSize: 16,
-        fontWeight: {{prefix.pascalCase()}}FontWeight.regular,
-        letterSpacing: 0.5,
-      );
-
-  // Constructor
-  {{prefix.pascalCase()}}Text._(
+  //Constructor
+  $className(
     String data, {
     Key? key,
     StrutStyle? strutStyle,
@@ -67,7 +55,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     Color? color,
     Color? backgroundColor,
     double? fontSize = 14,
-    this.fontWeight = {{prefix.pascalCase()}}FontWeight.regular,
+    this.fontWeight = $fontWeightClass.regular,
     FontStyle? fontStyle,
     double? letterSpacing = 0.0,
     double? wordSpacing,
@@ -82,7 +70,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     TextDecorationStyle? decorationStyle,
     double? decorationThickness,
     String? debugLabel,
-    this.fontFamily = {{prefix.pascalCase()}}FontFamily.poppins,
+    this.fontFamily = $fontFamilyClass.${_getDefaultFontFamily(config)},
     List<String>? fontFamilyFallback,
     this.package,
   }) : super(
@@ -90,7 +78,7 @@ class {{prefix.pascalCase()}}Text extends Text {
           key: key,
           style: TextStyle(
             inherit: inherit ?? true,
-            color: color ?? {{prefix.pascalCase()}}Color.textPrimary,
+            color: color,
             backgroundColor: backgroundColor,
             fontSize: fontSize,
             fontWeight: fontWeight?.value,
@@ -127,8 +115,8 @@ class {{prefix.pascalCase()}}Text extends Text {
           selectionColor: selectionColor,
         );
 
-  // CopyWith
-  {{prefix.pascalCase()}}Text _copyWith({
+  //CopyWith
+  $className copyWith({
     String? data,
     Key? key,
     StrutStyle? strutStyle,
@@ -148,7 +136,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     Color? color,
     Color? backgroundColor,
     double? fontSize,
-    {{prefix.pascalCase()}}FontWeight? fontWeight,
+    $fontWeightClass? fontWeight,
     FontStyle? fontStyle,
     double? letterSpacing,
     double? wordSpacing,
@@ -163,11 +151,11 @@ class {{prefix.pascalCase()}}Text extends Text {
     TextDecorationStyle? decorationStyle,
     double? decorationThickness,
     String? debugLabel,
-    {{prefix.pascalCase()}}FontFamily? fontFamily,
+    $fontFamilyClass? fontFamily,
     List<String>? fontFamilyFallback,
     String? package,
   }) {
-    return {{prefix.pascalCase()}}Text._(
+    return $className(
       data ?? this.data ?? "",
       key: key ?? this.key,
       strutStyle: strutStyle ?? this.strutStyle,
@@ -208,7 +196,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     );
   }
 
-  {{prefix.pascalCase()}}Text styles({
+  $className styles({
     Key? key,
     StrutStyle? strutStyle,
     TextAlign? textAlign,
@@ -227,7 +215,7 @@ class {{prefix.pascalCase()}}Text extends Text {
     Color? color,
     Color? backgroundColor,
     double? fontSize,
-    {{prefix.pascalCase()}}FontWeight? fontWeight,
+    $fontWeightClass? fontWeight,
     FontStyle? fontStyle,
     double? letterSpacing,
     double? wordSpacing,
@@ -242,11 +230,11 @@ class {{prefix.pascalCase()}}Text extends Text {
     TextDecorationStyle? decorationStyle,
     double? decorationThickness,
     String? debugLabel,
-    {{prefix.pascalCase()}}FontFamily? fontFamily,
+    $fontFamilyClass? fontFamily,
     List<String>? fontFamilyFallback,
     String? package,
   }) =>
-      _copyWith(
+      copyWith(
         key: key,
         strutStyle: strutStyle,
         textAlign: textAlign,
@@ -283,4 +271,28 @@ class {{prefix.pascalCase()}}Text extends Text {
         fontFamilyFallback: fontFamilyFallback,
         package: package,
       );
+
+$factories
+}
+''';
+  }
+
+  static String _getDefaultFontFamily(ThemeConfig config) {
+    if (config.fontFamilies.isEmpty) return 'inter';
+    final family = config.fontFamilies.first;
+    return _toFieldName(family);
+  }
+
+  static String _toFieldName(String input) {
+    // Convert to camelCase
+    input = input.trim();
+    final words = input.split(RegExp(r'[\s_-]+'));
+    return words[0].toLowerCase() +
+        words
+            .skip(1)
+            .map((word) => word.isEmpty
+                ? ''
+                : word[0].toUpperCase() + word.substring(1).toLowerCase())
+            .join('');
+  }
 }

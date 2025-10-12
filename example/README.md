@@ -1,16 +1,35 @@
-# example
+# Theme Kit 3.0 Example
 
-A new Flutter project.
+This example demonstrates how to use Theme Kit 3.0 to generate a custom theme for your Flutter app.
 
-## Getting Started
+## Setup
 
-This project is a starting point for a Flutter application.
+1. This example has a `theme_kit.yaml` configuration file that defines the theme.
 
-A few resources to get you started if this is your first Flutter project:
+2. To generate the theme, run from the example directory:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```bash
+dart run theme_kit:generate
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This will generate the theme files in `lib/theme/` directory.
+
+3. The example app in `lib/main.dart` shows how to use the generated theme.
+
+## What's Generated
+
+After running the generator, you'll get:
+
+- `lib/theme/app_theme.dart` - Main export file
+- `lib/theme/src/colors/` - Color tokens and theme configuration
+- `lib/theme/src/typography/` - Text widgets, font families, and weights
+- `lib/theme/src/theme/` - Main theme InheritedWidget
+- `lib/theme/USAGE.md` - Usage documentation
+
+## Running the Example
+
+```bash
+flutter run
+```
+
+Note: The generated theme files are not committed to git (see .gitignore), so you'll need to generate them first before running the example.
