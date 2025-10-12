@@ -1,7 +1,13 @@
 import '../config/theme_config.dart';
 
 /// Template for generating the font weight class
+/// 
+/// Creates a class with const instances for each font weight,
+/// wrapping Flutter's FontWeight values for type safety.
 class FontWeightTemplate {
+  /// Generates the font weight class code
+  /// 
+  /// Returns a String containing valid Dart code for the font weight class.
   static String generate(ThemeConfig config) {
     final className = '${config.prefix.toUpperCase()}FontWeight';
     final weights = config.fontWeights.map((weight) {

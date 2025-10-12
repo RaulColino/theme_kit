@@ -313,6 +313,9 @@ class ThemeConfig {
     );
   }
 
+  /// Returns the default font weight value for common weight names
+  /// 
+  /// Supported names: regular (400), medium (500), semibold (600), bold (700)
   static int _defaultWeight(String name) {
     switch (name.toLowerCase()) {
       case 'regular':
@@ -328,8 +331,19 @@ class ThemeConfig {
     }
   }
 
+  /// Converts a theme name to snake_case format
+  /// 
+  /// Example: "My Theme" -> "my_theme"
   String get snakeCaseName => _toSnakeCase(name);
+  
+  /// Converts a theme name to PascalCase format
+  /// 
+  /// Example: "my_theme" -> "MyTheme"
   String get pascalCaseName => _toPascalCase(name);
+  
+  /// Converts a theme name to camelCase format
+  /// 
+  /// Example: "my_theme" -> "myTheme"
   String get camelCaseName => _toCamelCase(name);
 
   static String _toSnakeCase(String input) {
@@ -358,6 +372,9 @@ class ThemeConfig {
   }
 }
 
+/// Represents a font weight configuration
+/// 
+/// Contains the name (e.g., "regular", "bold") and the numeric weight value (100-900).
 class FontWeight {
   final String name;
   final int weight;
@@ -387,6 +404,10 @@ class FontWeight {
   }
 }
 
+/// Represents a color token in the theme
+/// 
+/// A color token defines a semantic color name (e.g., "primary", "background")
+/// that will be available in the generated theme class.
 class ColorToken {
   final String name;
   final String? description;
@@ -394,6 +415,10 @@ class ColorToken {
   ColorToken({required this.name, this.description});
 }
 
+/// Represents a text style configuration
+/// 
+/// Defines a named text style (e.g., "bodyM", "headingL") with optional
+/// font size and weight specifications.
 class TextStyle {
   final String name;
   final double? fontSize;

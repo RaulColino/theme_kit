@@ -378,6 +378,8 @@ If you're upgrading from theme_kit 2.x (Mason bricks), here are the key changes:
 
 ## Troubleshooting
 
+For detailed troubleshooting steps, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
+
 ### "Configuration file not found"
 
 Make sure `theme_kit.yaml` exists in your project root, or specify the path:
@@ -409,6 +411,8 @@ import 'theme/my_theme.dart';
 // If generated in custom location
 import 'custom/path/my_theme.dart';
 ```
+
+For more issues and solutions, see the [complete troubleshooting guide](TROUBLESHOOTING.md).
 
 ## FAQ
 

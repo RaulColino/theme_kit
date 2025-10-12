@@ -9,6 +9,12 @@ import '../templates/text_widget_template.dart';
 import '../templates/main_theme_template.dart';
 
 /// Main theme generator class
+/// 
+/// Handles the entire theme generation process:
+/// 1. Loads and validates configuration from a YAML file
+/// 2. Creates the output directory structure
+/// 3. Generates all theme files using templates
+/// 4. Writes files to the specified output directory
 class ThemeGenerator {
   final String configPath;
   final String outputDir;
@@ -18,6 +24,16 @@ class ThemeGenerator {
     required this.outputDir,
   });
 
+  /// Generates the complete theme based on the configuration
+  /// 
+  /// This method:
+  /// 1. Loads the theme configuration from the specified file
+  /// 2. Creates the output directory structure
+  /// 3. Generates all theme files (colors, typography, theme class)
+  /// 4. Creates a main export file and usage documentation
+  /// 
+  /// Throws [ConfigurationException] if the configuration is invalid.
+  /// Throws [FileSystemException] if there are file system errors.
   Future<void> generate() async {
     // Load configuration
     print('📖 Loading configuration...');
@@ -111,6 +127,9 @@ class ThemeGenerator {
     print('   ✓ USAGE.md');
   }
 
+  /// Writes content to a file, creating parent directories if needed
+  /// 
+  /// Throws if there are permission issues or file system errors.
   Future<void> _writeFile(String filePath, String content) async {
     try {
       final file = File(filePath);
@@ -123,6 +142,9 @@ class ThemeGenerator {
     }
   }
 
+  /// Generates the main export file content
+  /// 
+  /// Creates a library file that exports all generated theme components.
   String _generateMainExport(ThemeConfig config) {
     return '''
 library ${config.snakeCaseName};
@@ -141,6 +163,10 @@ export 'src/theme/${config.snakeCaseName}.dart';
 ''';
   }
 
+  /// Generates usage documentation in Markdown format
+  /// 
+  /// Creates a comprehensive guide showing how to use the generated theme,
+  /// including installation, basic usage, and available components.
   String _generateUsageDoc(ThemeConfig config) {
     final className = config.pascalCaseName;
     final themeClass = '${config.prefix.toUpperCase()}Theme';
