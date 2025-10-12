@@ -21,7 +21,17 @@ class ThemeGenerator {
   Future<void> generate() async {
     // Load configuration
     print('📖 Loading configuration...');
-    final config = ThemeConfig.fromFile(configPath);
+    late ThemeConfig config;
+    
+    try {
+      config = ThemeConfig.fromFile(configPath);
+    } catch (e) {
+      print('');
+      print('❌ Failed to load configuration:');
+      print(e.toString());
+      rethrow;
+    }
+    
     print('   Theme: ${config.name}');
     print('   Prefix: ${config.prefix}');
 
@@ -32,9 +42,17 @@ class ThemeGenerator {
     final typographyDir = path.join(outputPath, 'src', 'typography');
     final themeDir = path.join(outputPath, 'src', 'theme');
 
-    await Directory(colorsDir).create(recursive: true);
-    await Directory(typographyDir).create(recursive: true);
-    await Directory(themeDir).create(recursive: true);
+    try {
+      await Directory(colorsDir).create(recursive: true);
+      await Directory(typographyDir).create(recursive: true);
+      await Directory(themeDir).create(recursive: true);
+    } catch (e) {
+      print('');
+      print('❌ Failed to create output directories:');
+      print('Error: $e');
+      print('Make sure you have write permissions to: $outputDir');
+      rethrow;
+    }
 
     // Generate files
     print('✍️  Generating theme files...');
@@ -94,8 +112,15 @@ class ThemeGenerator {
   }
 
   Future<void> _writeFile(String filePath, String content) async {
-    final file = File(filePath);
-    await file.writeAsString(content);
+    try {
+      final file = File(filePath);
+      await file.writeAsString(content);
+    } catch (e) {
+      print('');
+      print('❌ Failed to write file: $filePath');
+      print('Error: $e');
+      rethrow;
+    }
   }
 
   String _generateMainExport(ThemeConfig config) {
