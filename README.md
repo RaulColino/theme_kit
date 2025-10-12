@@ -4,6 +4,10 @@ Create themes you'll enjoy using 🎨.
 
 **Version 3.0** - Complete rewrite with CLI-based code generation (no Mason bricks required!)
 
+> 🎉 **New to Theme Kit 3.0?** Check out [What's New](WHATS_NEW.md) for a complete overview of changes.
+> 
+> 🚀 **Want to get started quickly?** See the [Quick Start Guide](QUICKSTART.md).
+
 ## Features ✨
 
 - ✅ Easy to set dark and light themes.
