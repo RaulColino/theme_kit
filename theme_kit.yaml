@@ -1,16 +1,32 @@
 # Theme Kit Configuration
 # This file defines your theme configuration for code generation
+# See: https://github.com/RaulColino/theme_kit for full documentation
+
+# ==============================================================================
+# REQUIRED FIELDS
+# ==============================================================================
 
 # Theme name (will be converted to snake_case for file names)
+# Example: "my_theme" generates files like "my_theme.dart"
 name: my_theme
 
-# Prefix for generated classes (recommended 2-3 characters)
+# Prefix for generated classes (recommended 2-3 characters, lowercase)
+# Example: "mt" generates classes like MTColor, MTText, MTTheme
 prefix: mt
 
-# Optional description
+# ==============================================================================
+# OPTIONAL FIELDS
+# ==============================================================================
+
+# Optional description of your theme
 description: My custom theme for Flutter app
 
+# ==============================================================================
+# TYPOGRAPHY CONFIGURATION
+# ==============================================================================
+
 # Font families to include in the theme
+# These will be available as constants in the generated FontFamily class
 # Default: [Inter]
 font_families:
   - Inter
@@ -18,6 +34,7 @@ font_families:
   - Roboto
 
 # Font weights to include in the theme
+# Each weight needs a name and numeric weight value (100-900)
 # Default: regular (400), medium (500), semibold (600), bold (700)
 font_weights:
   - name: regular
@@ -29,8 +46,13 @@ font_weights:
   - name: bold
     weight: 700
 
+# ==============================================================================
+# COLOR CONFIGURATION
+# ==============================================================================
+
 # Color tokens for the theme
 # These will be available as static getters in the generated Color class
+# Values are set at runtime when you create a Theme instance
 colors:
   primary:
     description: Primary brand color
@@ -59,8 +81,13 @@ colors:
   border:
     description: Border color
 
+# ==============================================================================
+# TEXT STYLE CONFIGURATION
+# ==============================================================================
+
 # Text styles with default font sizes
-# Default: displayXL through labelS
+# These will be available as factory constructors in the generated Text class
+# Default styles: displayXL through labelS with standard sizes
 text_styles:
   - name: displayXL
     font_size: 48.0
@@ -90,3 +117,26 @@ text_styles:
     font_size: 12.0
   - name: labelS
     font_size: 10.0
+
+# ==============================================================================
+# GENERATION INSTRUCTIONS
+# ==============================================================================
+
+# To generate your theme, run:
+#   dart run theme_kit:generate
+#
+# Or with custom options:
+#   dart run theme_kit:generate --config my_config.yaml --output lib/gen
+#
+# The generated files will include:
+#   - {prefix}_font_family.dart  : Font family constants
+#   - {prefix}_font_weight.dart  : Font weight constants
+#   - {prefix}_text.dart         : Text widget with custom styles
+#   - {prefix}_theme.dart        : Theme configuration class
+#   - {prefix}_color.dart        : Color token accessors
+#   - {name}.dart                : Main theme InheritedWidget
+#   - {name}.dart                : Main export file
+#   - USAGE.md                   : Usage documentation
+#
+# See README.md for complete documentation and examples.
+
