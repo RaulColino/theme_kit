@@ -9,6 +9,12 @@ import '../templates/text_widget_template.dart';
 import '../templates/main_theme_template.dart';
 
 /// Main theme generator class
+/// 
+/// Handles the entire theme generation process:
+/// 1. Loads and validates configuration from a YAML file
+/// 2. Creates the output directory structure
+/// 3. Generates all theme files using templates
+/// 4. Writes files to the specified output directory
 class ThemeGenerator {
   final String configPath;
   final String outputDir;
@@ -18,10 +24,30 @@ class ThemeGenerator {
     required this.outputDir,
   });
 
+  /// Generates the complete theme based on the configuration
+  /// 
+  /// This method:
+  /// 1. Loads the theme configuration from the specified file
+  /// 2. Creates the output directory structure
+  /// 3. Generates all theme files (colors, typography, theme class)
+  /// 4. Creates a main export file and usage documentation
+  /// 
+  /// Throws [ConfigurationException] if the configuration is invalid.
+  /// Throws [FileSystemException] if there are file system errors.
   Future<void> generate() async {
     // Load configuration
     print('📖 Loading configuration...');
-    final config = ThemeConfig.fromFile(configPath);
+    late ThemeConfig config;
+    
+    try {
+      config = ThemeConfig.fromFile(configPath);
+    } catch (e) {
+      print('');
+      print('❌ Failed to load configuration:');
+      print(e.toString());
+      rethrow;
+    }
+    
     print('   Theme: ${config.name}');
     print('   Prefix: ${config.prefix}');
 
@@ -32,9 +58,17 @@ class ThemeGenerator {
     final typographyDir = path.join(outputPath, 'src', 'typography');
     final themeDir = path.join(outputPath, 'src', 'theme');
 
-    await Directory(colorsDir).create(recursive: true);
-    await Directory(typographyDir).create(recursive: true);
-    await Directory(themeDir).create(recursive: true);
+    try {
+      await Directory(colorsDir).create(recursive: true);
+      await Directory(typographyDir).create(recursive: true);
+      await Directory(themeDir).create(recursive: true);
+    } catch (e) {
+      print('');
+      print('❌ Failed to create output directories:');
+      print('Error: $e');
+      print('Make sure you have write permissions to: $outputDir');
+      rethrow;
+    }
 
     // Generate files
     print('✍️  Generating theme files...');
@@ -93,11 +127,24 @@ class ThemeGenerator {
     print('   ✓ USAGE.md');
   }
 
+  /// Writes content to a file, creating parent directories if needed
+  /// 
+  /// Throws if there are permission issues or file system errors.
   Future<void> _writeFile(String filePath, String content) async {
-    final file = File(filePath);
-    await file.writeAsString(content);
+    try {
+      final file = File(filePath);
+      await file.writeAsString(content);
+    } catch (e) {
+      print('');
+      print('❌ Failed to write file: $filePath');
+      print('Error: $e');
+      rethrow;
+    }
   }
 
+  /// Generates the main export file content
+  /// 
+  /// Creates a library file that exports all generated theme components.
   String _generateMainExport(ThemeConfig config) {
     return '''
 library ${config.snakeCaseName};
@@ -116,6 +163,10 @@ export 'src/theme/${config.snakeCaseName}.dart';
 ''';
   }
 
+  /// Generates usage documentation in Markdown format
+  /// 
+  /// Creates a comprehensive guide showing how to use the generated theme,
+  /// including installation, basic usage, and available components.
   String _generateUsageDoc(ThemeConfig config) {
     final className = config.pascalCaseName;
     final themeClass = '${config.prefix.toUpperCase()}Theme';

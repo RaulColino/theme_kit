@@ -1,7 +1,13 @@
 import '../config/theme_config.dart';
 
 /// Template for generating the color class
+/// 
+/// Creates a static color accessor class that provides type-safe access
+/// to theme colors through static getters.
 class ColorTemplate {
+  /// Generates the color class code
+  /// 
+  /// Returns a String containing valid Dart code for the color accessor class.
   static String generate(ThemeConfig config) {
     final className = '${config.prefix.toUpperCase()}Color';
     final getters = config.colors.map((color) {

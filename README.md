@@ -7,6 +7,10 @@ Create themes you'll enjoy using 🎨.
 > 🎉 **New to Theme Kit 3.0?** Check out [What's New](WHATS_NEW.md) for a complete overview of changes.
 > 
 > 🚀 **Want to get started quickly?** See the [Quick Start Guide](QUICKSTART.md).
+>
+> 📚 **Need detailed API documentation?** Check the [API Reference](API.md).
+>
+> 🔄 **Migrating from 2.x?** Read the [Migration Guide](MIGRATION.md).
 
 ## Features ✨
 
@@ -378,6 +382,8 @@ If you're upgrading from theme_kit 2.x (Mason bricks), here are the key changes:
 
 ## Troubleshooting
 
+For detailed troubleshooting steps, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
+
 ### "Configuration file not found"
 
 Make sure `theme_kit.yaml` exists in your project root, or specify the path:
@@ -409,6 +415,8 @@ import 'theme/my_theme.dart';
 // If generated in custom location
 import 'custom/path/my_theme.dart';
 ```
+
+For more issues and solutions, see the [complete troubleshooting guide](TROUBLESHOOTING.md).
 
 ## FAQ
 

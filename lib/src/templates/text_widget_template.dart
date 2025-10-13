@@ -1,7 +1,14 @@
 import '../config/theme_config.dart';
 
 /// Template for generating the text widget class
+/// 
+/// Creates a custom Text widget that extends Flutter's Text widget
+/// with theme-aware styling and convenient factory constructors for
+/// each defined text style.
 class TextWidgetTemplate {
+  /// Generates the text widget class code
+  /// 
+  /// Returns a String containing valid Dart code for the custom Text widget.
   static String generate(ThemeConfig config) {
     final className = '${config.prefix.toUpperCase()}Text';
     final fontWeightClass = '${config.prefix.toUpperCase()}FontWeight';

@@ -30,6 +30,21 @@ void main(List<String> arguments) async {
     final configPath = results['config'] as String;
     final outputDir = results['output'] as String;
 
+    // Validate arguments
+    if (configPath.isEmpty) {
+      print('❌ Error: Config path cannot be empty');
+      print('');
+      _printUsage(parser);
+      exit(1);
+    }
+
+    if (outputDir.isEmpty) {
+      print('❌ Error: Output directory cannot be empty');
+      print('');
+      _printUsage(parser);
+      exit(1);
+    }
+
     print('🎨 Theme Kit v3.0.0');
     print('Generating theme from: $configPath');
     print('Output directory: $outputDir');
@@ -48,11 +63,22 @@ void main(List<String> arguments) async {
     print('Next steps:');
     print('1. Import your theme in your app');
     print('2. Use the generated theme classes');
+    print('3. Check the USAGE.md file in the output directory for examples');
     print('');
-  } catch (e) {
-    print('❌ Error: $e');
+  } on FormatException catch (e) {
+    print('❌ Error: Invalid command line arguments');
+    print(e.message);
     print('');
     _printUsage(parser);
+    exit(1);
+  } catch (e) {
+    print('');
+    print('❌ Error: $e');
+    print('');
+    if (e.toString().contains('ConfigurationException')) {
+      print('💡 Tip: Check your theme_kit.yaml file for errors.');
+      print('See: https://github.com/RaulColino/theme_kit#configuration');
+    }
     exit(1);
   }
 }
