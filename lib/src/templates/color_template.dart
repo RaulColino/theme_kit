@@ -5,6 +5,9 @@ import '../config/theme_config.dart';
 /// Creates a static color accessor class that provides type-safe access
 /// to theme colors through static getters.
 class ColorTemplate {
+  // Private constructor to prevent instantiation
+  ColorTemplate._();
+
   /// Generates the color class code
   /// 
   /// Returns a String containing valid Dart code for the color accessor class.
@@ -21,6 +24,9 @@ import '${config.prefix}_theme.dart';
 
 /// Color tokens for ${config.name} theme
 class $className {
+  // Private constructor to prevent instantiation
+  $className._();
+
   static ${config.prefix.toUpperCase()}Theme? _theme;
 
   static void setTheme(${config.prefix.toUpperCase()}Theme theme) {

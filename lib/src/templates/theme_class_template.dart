@@ -5,6 +5,9 @@ import '../config/theme_config.dart';
 /// Creates the main theme configuration class that holds all color values.
 /// This class is instantiated by the user to define light/dark themes.
 class ThemeClassTemplate {
+  // Private constructor to prevent instantiation
+  ThemeClassTemplate._();
+
   /// Generates the theme class code
   /// 
   /// Returns a String containing valid Dart code for the theme configuration class.

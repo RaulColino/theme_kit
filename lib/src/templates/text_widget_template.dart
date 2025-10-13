@@ -6,6 +6,9 @@ import '../config/theme_config.dart';
 /// with theme-aware styling and convenient factory constructors for
 /// each defined text style.
 class TextWidgetTemplate {
+  // Private constructor to prevent instantiation
+  TextWidgetTemplate._();
+
   /// Generates the text widget class code
   /// 
   /// Returns a String containing valid Dart code for the custom Text widget.
@@ -36,12 +39,16 @@ import '${config.prefix}_font_weight.dart';
 
 /// Text widget for ${config.name} theme
 class $className extends Text {
-  //Exclusive attributes of the class
+  /// Custom font weight for this text widget
   final $fontWeightClass? fontWeight;
+  
+  /// Custom font family for this text widget
   final $fontFamilyClass? fontFamily;
-  final String? package; //Added because TextStyle package is private and doesn't have a getter
+  
+  /// Package name for custom fonts (TextStyle package is private)
+  final String? package;
 
-  //Constructor
+  /// Creates a new text widget
   $className(
     String data, {
     Key? key,
@@ -57,7 +64,7 @@ class $className extends Text {
     TextWidthBasis? textWidthBasis,
     TextHeightBehavior? textHeightBehavior,
     Color? selectionColor,
-    //'TextStyle style' attributes from standard Text widget
+    // TextStyle attributes
     bool? inherit,
     Color? color,
     Color? backgroundColor,
@@ -122,7 +129,7 @@ class $className extends Text {
           selectionColor: selectionColor,
         );
 
-  //CopyWith
+  /// Creates a copy of this text widget with the given fields replaced
   $className copyWith({
     String? data,
     Key? key,
@@ -138,7 +145,7 @@ class $className extends Text {
     TextWidthBasis? textWidthBasis,
     TextHeightBehavior? textHeightBehavior,
     Color? selectionColor,
-    //'TextStyle style' attributes from standard Text widget
+    // TextStyle attributes
     bool? inherit,
     Color? color,
     Color? backgroundColor,
@@ -177,7 +184,7 @@ class $className extends Text {
       textWidthBasis: textWidthBasis ?? this.textWidthBasis,
       textHeightBehavior: textHeightBehavior ?? this.textHeightBehavior,
       selectionColor: selectionColor ?? this.selectionColor,
-      //'TextStyle style' attributes from standard Text widget
+      // TextStyle attributes
       inherit: inherit ?? style?.inherit,
       color: color ?? style?.color,
       backgroundColor: backgroundColor ?? style?.backgroundColor,
@@ -203,6 +210,7 @@ class $className extends Text {
     );
   }
 
+  /// Applies styles to this text widget
   $className styles({
     Key? key,
     StrutStyle? strutStyle,
@@ -217,7 +225,7 @@ class $className extends Text {
     TextWidthBasis? textWidthBasis,
     TextHeightBehavior? textHeightBehavior,
     Color? selectionColor,
-    //'TextStyle style' attributes from standard Text widget
+    // TextStyle attributes
     bool? inherit,
     Color? color,
     Color? backgroundColor,

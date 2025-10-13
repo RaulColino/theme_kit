@@ -68,6 +68,19 @@ void main() {
       expect(generated, contains('TTColor.setTheme(_darkTheme!)'));
     });
 
+    test('should generate setDarkTheme with null check', () {
+      final config = ThemeConfig.fromYaml({
+        'name': 'test_theme',
+        'prefix': 'tt',
+      });
+
+      final generated = MainThemeTemplate.generate(config);
+
+      expect(generated, contains('if (_TestThemeState._darkTheme == null)'));
+      expect(generated, contains('throw StateError'));
+      expect(generated, contains('Dark theme is not available'));
+    });
+
     test('should generate of method for context access', () {
       final config = ThemeConfig.fromYaml({
         'name': 'test_theme',

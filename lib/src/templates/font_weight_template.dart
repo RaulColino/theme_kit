@@ -5,6 +5,9 @@ import '../config/theme_config.dart';
 /// Creates a class with const instances for each font weight,
 /// wrapping Flutter's FontWeight values for type safety.
 class FontWeightTemplate {
+  // Private constructor to prevent instantiation
+  FontWeightTemplate._();
+
   /// Generates the font weight class code
   /// 
   /// Returns a String containing valid Dart code for the font weight class.

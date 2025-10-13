@@ -73,5 +73,17 @@ void main() {
 
       expect(generated, contains('/// Primary brand color'));
     });
+
+    test('should include private constructor to prevent instantiation', () {
+      final config = ThemeConfig.fromYaml({
+        'name': 'test_theme',
+        'prefix': 'tt',
+      });
+
+      final generated = ColorTemplate.generate(config);
+
+      expect(generated, contains('TTColor._();'));
+      expect(generated, contains('// Private constructor to prevent instantiation'));
+    });
   });
 }
