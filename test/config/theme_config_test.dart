@@ -216,6 +216,20 @@ colors:
         );
       });
 
+      test('should accept font weight as double and convert to int', () {
+        final yaml = {
+          'name': 'my_theme',
+          'prefix': 'mt',
+          'font_weights': [
+            {'name': 'regular', 'weight': 400.0},
+          ],
+        };
+
+        final config = ThemeConfig.fromYaml(yaml);
+        expect(config.fontWeights.length, equals(1));
+        expect(config.fontWeights[0].weight, equals(400));
+      });
+
       test('should parse custom colors', () {
         final yaml = {
           'name': 'my_theme',
@@ -412,6 +426,25 @@ colors:
         });
 
         expect(config.camelCaseName, equals('myTheme'));
+      });
+
+      test('should handle theme name with multiple spaces', () {
+        final config = ThemeConfig.fromYaml({
+          'name': 'My  Cool   Theme',
+          'prefix': 'mt',
+        });
+
+        expect(config.snakeCaseName, equals('my_cool_theme'));
+        expect(config.pascalCaseName, equals('MyCoolTheme'));
+      });
+
+      test('should handle theme name with hyphens and underscores', () {
+        final config = ThemeConfig.fromYaml({
+          'name': 'my-cool_theme',
+          'prefix': 'mt',
+        });
+
+        expect(config.pascalCaseName, equals('MyCoolTheme'));
       });
     });
   });

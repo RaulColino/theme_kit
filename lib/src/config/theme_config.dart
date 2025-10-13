@@ -407,22 +407,25 @@ class ThemeConfig {
 
   static String _toSnakeCase(String input) {
     input = input.trim();
+    if (input.isEmpty) return 'theme';  // Fallback for empty input
     input = input.replaceAllMapped(
       RegExp(r'([a-z0-9])([A-Z])'),
       (match) => '${match.group(1)}_${match.group(2)}',
     );
     input = input.replaceAll(RegExp(r'\s+'), '_');
+    input = input.replaceAll(RegExp(r'_+'), '_');  // Replace multiple underscores with single
     return input.toLowerCase();
   }
 
   static String _toPascalCase(String input) {
     input = input.trim();
+    if (input.isEmpty) return '';
     final words = input.split(RegExp(r'[\s_-]+'));
-    return words
-        .map((word) => word.isEmpty
-            ? ''
-            : word[0].toUpperCase() + word.substring(1).toLowerCase())
+    final result = words
+        .where((word) => word.isNotEmpty)  // Filter out empty words
+        .map((word) => word[0].toUpperCase() + word.substring(1).toLowerCase())
         .join('');
+    return result.isEmpty ? 'Theme' : result;  // Fallback to 'Theme' if empty
   }
 
   static String _toCamelCase(String input) {
@@ -455,15 +458,15 @@ class FontWeight {
       );
     }
     
-    if (weight == null || weight is! int) {
+    if (weight == null || weight is! num) {
       throw ConfigurationException(
-        'Font weight must have a "weight" field of type integer.',
+        'Font weight must have a "weight" field of type number.',
       );
     }
     
     return FontWeight(
       name: name,
-      weight: weight,
+      weight: weight.toInt(),
     );
   }
 }
