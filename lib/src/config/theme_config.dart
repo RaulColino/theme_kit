@@ -13,6 +13,28 @@ class ConfigurationException implements Exception {
   String toString() => 'ConfigurationException: $message';
 }
 
+/// Dart reserved keywords that cannot be used as identifiers
+const _dartReservedKeywords = {
+  'abstract', 'as', 'assert', 'async', 'await',
+  'break', 'case', 'catch', 'class', 'const', 'continue',
+  'default', 'deferred', 'do', 'dynamic',
+  'else', 'enum', 'export', 'extends', 'extension', 'external',
+  'factory', 'false', 'final', 'finally', 'for',
+  'get', 'hide',
+  'if', 'implements', 'import', 'in', 'interface', 'is',
+  'late', 'library',
+  'mixin',
+  'new', 'null',
+  'on', 'operator',
+  'part',
+  'required', 'rethrow', 'return',
+  'set', 'show', 'static', 'super', 'switch', 'sync',
+  'this', 'throw', 'true', 'try', 'typedef',
+  'var', 'void',
+  'while', 'with',
+  'yield',
+};
+
 /// Configuration model for theme generation
 class ThemeConfig {
   /// The name of the theme (e.g., "My Theme")
@@ -196,6 +218,13 @@ class ThemeConfig {
         );
       }
       seenWeightNames.add(weight.name);
+      // Check if it's a reserved keyword
+      if (_dartReservedKeywords.contains(weight.name)) {
+        throw ConfigurationException(
+          'Invalid font weight name "${weight.name}".\n'
+          'Font weight names cannot be Dart reserved keywords.',
+        );
+      }
       if (weight.weight < 100 || weight.weight > 900 || weight.weight % 100 != 0) {
         throw ConfigurationException(
           'Invalid font weight "${weight.weight}" for "${weight.name}".\n'
@@ -243,6 +272,14 @@ class ThemeConfig {
         throw ConfigurationException(
           'Invalid color name "$colorName".\n'
           'Color names must be valid Dart identifiers (letters, numbers, and underscores, cannot start with a number).',
+        );
+      }
+      
+      // Check if it's a reserved keyword
+      if (_dartReservedKeywords.contains(colorName)) {
+        throw ConfigurationException(
+          'Invalid color name "$colorName".\n'
+          'Color names cannot be Dart reserved keywords.',
         );
       }
       
@@ -304,6 +341,14 @@ class ThemeConfig {
             throw ConfigurationException(
               'Invalid text style name "${style.name}".\n'
               'Text style names must be valid Dart identifiers.',
+            );
+          }
+          
+          // Check if it's a reserved keyword
+          if (_dartReservedKeywords.contains(style.name)) {
+            throw ConfigurationException(
+              'Invalid text style name "${style.name}".\n'
+              'Text style names cannot be Dart reserved keywords.',
             );
           }
           

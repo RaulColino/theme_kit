@@ -216,6 +216,21 @@ colors:
         );
       });
 
+      test('should throw ConfigurationException for reserved keyword as font weight name', () {
+        final yaml = {
+          'name': 'my_theme',
+          'prefix': 'mt',
+          'font_weights': [
+            {'name': 'static', 'weight': 400},
+          ],
+        };
+
+        expect(
+          () => ThemeConfig.fromYaml(yaml),
+          throwsA(isA<ConfigurationException>()),
+        );
+      });
+
       test('should accept font weight as double and convert to int', () {
         final yaml = {
           'name': 'my_theme',
@@ -262,6 +277,21 @@ colors:
         );
       });
 
+      test('should throw ConfigurationException for reserved keyword as color name', () {
+        final yaml = {
+          'name': 'my_theme',
+          'prefix': 'mt',
+          'colors': {
+            'class': {'description': 'Reserved keyword'},
+          },
+        };
+
+        expect(
+          () => ThemeConfig.fromYaml(yaml),
+          throwsA(isA<ConfigurationException>()),
+        );
+      });
+
       test('should parse custom text styles', () {
         final yaml = {
           'name': 'my_theme',
@@ -285,6 +315,21 @@ colors:
           'prefix': 'mt',
           'text_styles': [
             {'name': 'invalid-name', 'font_size': 16.0},
+          ],
+        };
+
+        expect(
+          () => ThemeConfig.fromYaml(yaml),
+          throwsA(isA<ConfigurationException>()),
+        );
+      });
+
+      test('should throw ConfigurationException for reserved keyword as text style name', () {
+        final yaml = {
+          'name': 'my_theme',
+          'prefix': 'mt',
+          'text_styles': [
+            {'name': 'void', 'font_size': 16.0},
           ],
         };
 

@@ -94,7 +94,11 @@ colors:
     description: Color 1
   # 1color:       # Wrong - starts with number
   # my-color:     # Wrong - contains hyphen
+  # class:        # Wrong - reserved keyword
+  # void:         # Wrong - reserved keyword
 ```
+
+**Note:** Avoid using Dart reserved keywords like `class`, `void`, `static`, `if`, `else`, etc. as names for colors, text styles, or font weights.
 
 ### Invalid font weight
 
