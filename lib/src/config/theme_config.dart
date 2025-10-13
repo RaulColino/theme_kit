@@ -131,16 +131,23 @@ class ThemeConfig {
 
     // Parse font families
     final fontFamiliesYaml = yaml['font_families'] as List? ?? [];
-    final fontFamilies = fontFamiliesYaml.cast<String>();
-
-    // Validate font families
-    for (final family in fontFamilies) {
+    final fontFamilies = <String>[];
+    
+    // Validate and convert font families
+    for (final family in fontFamiliesYaml) {
+      if (family is! String) {
+        throw ConfigurationException(
+          'Invalid font family value: $family\n'
+          'Font family values must be strings.',
+        );
+      }
       if (family.trim().isEmpty) {
         throw ConfigurationException(
           'Font family name cannot be empty.\n'
           'Please provide valid font family names.',
         );
       }
+      fontFamilies.add(family);
     }
 
     // If no font families specified, use default
@@ -175,12 +182,20 @@ class ThemeConfig {
     }
 
     // Validate font weights
+    final seenWeightNames = <String>{};
     for (final weight in fontWeights) {
       if (weight.name.trim().isEmpty) {
         throw ConfigurationException(
           'Font weight name cannot be empty.',
         );
       }
+      if (seenWeightNames.contains(weight.name)) {
+        throw ConfigurationException(
+          'Duplicate font weight name "${weight.name}".\n'
+          'Font weight names must be unique.',
+        );
+      }
+      seenWeightNames.add(weight.name);
       if (weight.weight < 100 || weight.weight > 900 || weight.weight % 100 != 0) {
         throw ConfigurationException(
           'Invalid font weight "${weight.weight}" for "${weight.name}".\n'
@@ -202,6 +217,7 @@ class ThemeConfig {
     // Parse colors
     final colorsYaml = yaml['colors'] as Map? ?? {};
     final colors = <ColorToken>[];
+    final seenColorNames = <String>{};
     
     for (final entry in colorsYaml.entries) {
       final colorName = entry.key as String;
@@ -212,6 +228,15 @@ class ThemeConfig {
           'Color name cannot be empty.',
         );
       }
+      
+      // Check for duplicates
+      if (seenColorNames.contains(colorName)) {
+        throw ConfigurationException(
+          'Duplicate color name "$colorName".\n'
+          'Color names must be unique.',
+        );
+      }
+      seenColorNames.add(colorName);
       
       // Validate color name format (must be valid Dart identifier)
       if (!RegExp(r'^[a-zA-Z_][a-zA-Z0-9_]*$').hasMatch(colorName)) {
@@ -251,6 +276,7 @@ class ThemeConfig {
     // Parse text styles
     final textStylesYaml = yaml['text_styles'] as List? ?? [];
     final textStyles = <TextStyle>[];
+    final seenStyleNames = <String>{};
     
     for (final ts in textStylesYaml) {
       if (ts is Map) {
@@ -263,6 +289,15 @@ class ThemeConfig {
               'Text style name cannot be empty.',
             );
           }
+          
+          // Check for duplicates
+          if (seenStyleNames.contains(style.name)) {
+            throw ConfigurationException(
+              'Duplicate text style name "${style.name}".\n'
+              'Text style names must be unique.',
+            );
+          }
+          seenStyleNames.add(style.name);
           
           // Validate text style name format
           if (!RegExp(r'^[a-zA-Z_][a-zA-Z0-9_]*$').hasMatch(style.name)) {
@@ -289,6 +324,14 @@ class ThemeConfig {
           );
         }
       } else if (ts is String) {
+        // Check for duplicates
+        if (seenStyleNames.contains(ts)) {
+          throw ConfigurationException(
+            'Duplicate text style name "$ts".\n'
+            'Text style names must be unique.',
+          );
+        }
+        seenStyleNames.add(ts);
         textStyles.add(TextStyle(name: ts));
       } else {
         throw ConfigurationException(

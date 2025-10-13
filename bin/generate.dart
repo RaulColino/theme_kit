@@ -2,6 +2,7 @@
 
 import 'dart:io';
 import 'package:args/args.dart';
+import 'package:theme_kit/src/config/theme_config.dart';
 import 'package:theme_kit/src/generator/theme_generator.dart';
 
 void main(List<String> arguments) async {
@@ -71,14 +72,17 @@ void main(List<String> arguments) async {
     print('');
     _printUsage(parser);
     exit(1);
+  } on ConfigurationException catch (e) {
+    print('');
+    print('❌ Configuration Error: ${e.message}');
+    print('');
+    print('💡 Tip: Check your theme_kit.yaml file for errors.');
+    print('See: https://github.com/RaulColino/theme_kit#configuration');
+    exit(1);
   } catch (e) {
     print('');
     print('❌ Error: $e');
     print('');
-    if (e.toString().contains('ConfigurationException')) {
-      print('💡 Tip: Check your theme_kit.yaml file for errors.');
-      print('See: https://github.com/RaulColino/theme_kit#configuration');
-    }
     exit(1);
   }
 }
