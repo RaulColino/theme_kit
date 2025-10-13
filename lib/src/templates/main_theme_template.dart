@@ -5,6 +5,9 @@ import '../config/theme_config.dart';
 /// Creates a StatefulWidget that manages theme state and provides it
 /// to the widget tree. Supports light/dark theme switching.
 class MainThemeTemplate {
+  // Private constructor to prevent instantiation
+  MainThemeTemplate._();
+
   /// Generates the main theme widget code
   /// 
   /// Returns a String containing valid Dart code for the theme widget.

@@ -5,6 +5,9 @@ import '../config/theme_config.dart';
 /// Creates a class with const instances for each font family,
 /// allowing type-safe font family selection in the theme.
 class FontFamilyTemplate {
+  // Private constructor to prevent instantiation
+  FontFamilyTemplate._();
+
   /// Generates the font family class code
   /// 
   /// Returns a String containing valid Dart code for the font family class.
