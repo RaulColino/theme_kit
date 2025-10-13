@@ -58,6 +58,9 @@ class $className extends StatefulWidget {
   }
 
   static void setDarkTheme() {
+    if (_${className}State._darkTheme == null) {
+      throw StateError('Dark theme is not available. Please provide a darkTheme to $className widget.');
+    }
     _${className}State._currentTheme = _${className}State._darkTheme;
     $colorClassName.setTheme(_${className}State._darkTheme!);
   }
