@@ -16,9 +16,13 @@ import '../templates/main_theme_template.dart';
 /// 3. Generates all theme files using templates
 /// 4. Writes files to the specified output directory
 class ThemeGenerator {
+  /// Path to the theme configuration YAML file
   final String configPath;
+  
+  /// Output directory where theme files will be generated
   final String outputDir;
 
+  /// Creates a new theme generator
   ThemeGenerator({
     required this.configPath,
     required this.outputDir,

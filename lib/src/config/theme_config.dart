@@ -3,8 +3,10 @@ import 'dart:io';
 
 /// Custom exception for configuration errors
 class ConfigurationException implements Exception {
+  /// The error message describing what went wrong
   final String message;
 
+  /// Creates a new configuration exception with the given [message]
   ConfigurationException(this.message);
 
   @override
@@ -13,14 +15,28 @@ class ConfigurationException implements Exception {
 
 /// Configuration model for theme generation
 class ThemeConfig {
+  /// The name of the theme (e.g., "My Theme")
   final String name;
+  
+  /// The prefix used for generated class names (e.g., "mt" for MTTheme, MTColor, etc.)
   final String prefix;
+  
+  /// Optional description of the theme
   final String? description;
+  
+  /// List of font family names to include in the theme
   final List<String> fontFamilies;
+  
+  /// List of font weights with their names and numeric values
   final List<FontWeight> fontWeights;
+  
+  /// List of color tokens (semantic color names) in the theme
   final List<ColorToken> colors;
+  
+  /// List of text styles with their properties
   final List<TextStyle> textStyles;
 
+  /// Creates a new theme configuration
   ThemeConfig({
     required this.name,
     required this.prefix,
@@ -376,11 +392,16 @@ class ThemeConfig {
 /// 
 /// Contains the name (e.g., "regular", "bold") and the numeric weight value (100-900).
 class FontWeight {
+  /// The name of the font weight (e.g., "regular", "bold", "semibold")
   final String name;
+  
+  /// The numeric weight value (100-900, must be a multiple of 100)
   final int weight;
 
+  /// Creates a new font weight configuration
   FontWeight({required this.name, required this.weight});
 
+  /// Parses a font weight configuration from a YAML map
   static FontWeight fromYaml(Map yaml) {
     final name = yaml['name'];
     final weight = yaml['weight'];
@@ -409,9 +430,13 @@ class FontWeight {
 /// A color token defines a semantic color name (e.g., "primary", "background")
 /// that will be available in the generated theme class.
 class ColorToken {
+  /// The name of the color token (must be a valid Dart identifier)
   final String name;
+  
+  /// Optional description of what this color is used for
   final String? description;
 
+  /// Creates a new color token
   ColorToken({required this.name, this.description});
 }
 
@@ -420,12 +445,19 @@ class ColorToken {
 /// Defines a named text style (e.g., "bodyM", "headingL") with optional
 /// font size and weight specifications.
 class TextStyle {
+  /// The name of the text style (must be a valid Dart identifier)
   final String name;
+  
+  /// The font size in logical pixels (must be positive if specified)
   final double? fontSize;
+  
+  /// The font weight name (e.g., "regular", "bold")
   final String? fontWeight;
 
+  /// Creates a new text style configuration
   TextStyle({required this.name, this.fontSize, this.fontWeight});
 
+  /// Parses a text style configuration from a YAML map
   static TextStyle fromYaml(Map yaml) {
     final name = yaml['name'];
     
