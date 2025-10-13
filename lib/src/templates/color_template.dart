@@ -24,6 +24,9 @@ import '${config.prefix}_theme.dart';
 
 /// Color tokens for ${config.name} theme
 class $className {
+  // Private constructor to prevent instantiation
+  $className._();
+
   static ${config.prefix.toUpperCase()}Theme? _theme;
 
   static void setTheme(${config.prefix.toUpperCase()}Theme theme) {
