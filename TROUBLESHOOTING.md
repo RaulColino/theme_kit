@@ -124,6 +124,50 @@ text_styles:
   #   font_size: -10.0  # Wrong - negative value
 ```
 
+### Duplicate names
+
+**Error:** `Duplicate color name "primary"` or `Duplicate text style name "heading"` or `Duplicate font weight name "regular"`
+
+**Solution:**
+Ensure all names are unique within their category:
+```yaml
+colors:
+  primary:    # Correct
+    description: Primary color
+  secondary:  # Correct
+    description: Secondary color
+  # primary:  # Wrong - duplicate name
+
+font_weights:
+  - name: regular
+    weight: 400
+  - name: bold
+    weight: 700
+  # - name: regular  # Wrong - duplicate name
+  #   weight: 500
+
+text_styles:
+  - name: heading
+    font_size: 24.0
+  - name: body
+    font_size: 16.0
+  # - name: heading  # Wrong - duplicate name
+  #   font_size: 20.0
+```
+
+### Invalid font family type
+
+**Error:** `Invalid font family value: 123. Font family values must be strings`
+
+**Solution:**
+Ensure all font family values are strings:
+```yaml
+font_families:
+  - Inter     # Correct
+  - Roboto    # Correct
+  # - 123     # Wrong - not a string
+```
+
 ## Generation Errors
 
 ### Permission denied

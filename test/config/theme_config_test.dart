@@ -294,6 +294,96 @@ colors:
           throwsA(isA<ConfigurationException>()),
         );
       });
+
+      test('should throw ConfigurationException for non-string font family', () {
+        final yaml = {
+          'name': 'my_theme',
+          'prefix': 'mt',
+          'font_families': ['Roboto', 123, 'Arial'],
+        };
+
+        expect(
+          () => ThemeConfig.fromYaml(yaml),
+          throwsA(isA<ConfigurationException>()),
+        );
+      });
+
+      test('should throw ConfigurationException for duplicate font weight names', () {
+        final yaml = {
+          'name': 'my_theme',
+          'prefix': 'mt',
+          'font_weights': [
+            {'name': 'regular', 'weight': 400},
+            {'name': 'regular', 'weight': 500},
+          ],
+        };
+
+        expect(
+          () => ThemeConfig.fromYaml(yaml),
+          throwsA(isA<ConfigurationException>()),
+        );
+      });
+
+      test('should throw ConfigurationException for duplicate color names', () {
+        final yaml = {
+          'name': 'my_theme',
+          'prefix': 'mt',
+          'colors': {
+            'primary': {'description': 'First primary'},
+            'primary': {'description': 'Second primary'},
+          },
+        };
+
+        expect(
+          () => ThemeConfig.fromYaml(yaml),
+          throwsA(isA<ConfigurationException>()),
+        );
+      });
+
+      test('should throw ConfigurationException for duplicate text style names (map)', () {
+        final yaml = {
+          'name': 'my_theme',
+          'prefix': 'mt',
+          'text_styles': [
+            {'name': 'heading', 'font_size': 24.0},
+            {'name': 'heading', 'font_size': 20.0},
+          ],
+        };
+
+        expect(
+          () => ThemeConfig.fromYaml(yaml),
+          throwsA(isA<ConfigurationException>()),
+        );
+      });
+
+      test('should throw ConfigurationException for duplicate text style names (string)', () {
+        final yaml = {
+          'name': 'my_theme',
+          'prefix': 'mt',
+          'text_styles': ['heading', 'body', 'heading'],
+        };
+
+        expect(
+          () => ThemeConfig.fromYaml(yaml),
+          throwsA(isA<ConfigurationException>()),
+        );
+      });
+
+      test('should throw ConfigurationException for duplicate text style names (mixed)', () {
+        final yaml = {
+          'name': 'my_theme',
+          'prefix': 'mt',
+          'text_styles': [
+            'heading',
+            {'name': 'heading', 'font_size': 24.0},
+          ],
+        };
+
+        expect(
+          () => ThemeConfig.fromYaml(yaml),
+          throwsA(isA<ConfigurationException>()),
+        );
+      });
     });
 
     group('name conversions', () {
