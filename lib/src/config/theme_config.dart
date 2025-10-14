@@ -13,6 +13,28 @@ class ConfigurationException implements Exception {
   String toString() => 'ConfigurationException: $message';
 }
 
+/// Dart reserved keywords that cannot be used as identifiers
+const _dartReservedKeywords = {
+  'abstract', 'as', 'assert', 'async', 'await',
+  'break', 'case', 'catch', 'class', 'const', 'continue',
+  'default', 'deferred', 'do', 'dynamic',
+  'else', 'enum', 'export', 'extends', 'extension', 'external',
+  'factory', 'false', 'final', 'finally', 'for',
+  'get', 'hide',
+  'if', 'implements', 'import', 'in', 'interface', 'is',
+  'late', 'library',
+  'mixin',
+  'new', 'null',
+  'on', 'operator',
+  'part',
+  'required', 'rethrow', 'return',
+  'set', 'show', 'static', 'super', 'switch', 'sync',
+  'this', 'throw', 'true', 'try', 'typedef',
+  'var', 'void',
+  'while', 'with',
+  'yield',
+};
+
 /// Configuration model for theme generation
 class ThemeConfig {
   /// The name of the theme (e.g., "My Theme")
@@ -131,16 +153,23 @@ class ThemeConfig {
 
     // Parse font families
     final fontFamiliesYaml = yaml['font_families'] as List? ?? [];
-    final fontFamilies = fontFamiliesYaml.cast<String>();
-
-    // Validate font families
-    for (final family in fontFamilies) {
+    final fontFamilies = <String>[];
+    
+    // Validate and convert font families
+    for (final family in fontFamiliesYaml) {
+      if (family is! String) {
+        throw ConfigurationException(
+          'Invalid font family value: $family\n'
+          'Font family values must be strings.',
+        );
+      }
       if (family.trim().isEmpty) {
         throw ConfigurationException(
           'Font family name cannot be empty.\n'
           'Please provide valid font family names.',
         );
       }
+      fontFamilies.add(family);
     }
 
     // If no font families specified, use default
@@ -175,10 +204,25 @@ class ThemeConfig {
     }
 
     // Validate font weights
+    final seenWeightNames = <String>{};
     for (final weight in fontWeights) {
       if (weight.name.trim().isEmpty) {
         throw ConfigurationException(
           'Font weight name cannot be empty.',
+        );
+      }
+      if (seenWeightNames.contains(weight.name)) {
+        throw ConfigurationException(
+          'Duplicate font weight name "${weight.name}".\n'
+          'Font weight names must be unique.',
+        );
+      }
+      seenWeightNames.add(weight.name);
+      // Check if it's a reserved keyword
+      if (_dartReservedKeywords.contains(weight.name)) {
+        throw ConfigurationException(
+          'Invalid font weight name "${weight.name}".\n'
+          'Font weight names cannot be Dart reserved keywords.',
         );
       }
       if (weight.weight < 100 || weight.weight > 900 || weight.weight % 100 != 0) {
@@ -202,6 +246,7 @@ class ThemeConfig {
     // Parse colors
     final colorsYaml = yaml['colors'] as Map? ?? {};
     final colors = <ColorToken>[];
+    final seenColorNames = <String>{};
     
     for (final entry in colorsYaml.entries) {
       final colorName = entry.key as String;
@@ -213,11 +258,28 @@ class ThemeConfig {
         );
       }
       
+      // Check for duplicates
+      if (seenColorNames.contains(colorName)) {
+        throw ConfigurationException(
+          'Duplicate color name "$colorName".\n'
+          'Color names must be unique.',
+        );
+      }
+      seenColorNames.add(colorName);
+      
       // Validate color name format (must be valid Dart identifier)
       if (!RegExp(r'^[a-zA-Z_][a-zA-Z0-9_]*$').hasMatch(colorName)) {
         throw ConfigurationException(
           'Invalid color name "$colorName".\n'
           'Color names must be valid Dart identifiers (letters, numbers, and underscores, cannot start with a number).',
+        );
+      }
+      
+      // Check if it's a reserved keyword
+      if (_dartReservedKeywords.contains(colorName)) {
+        throw ConfigurationException(
+          'Invalid color name "$colorName".\n'
+          'Color names cannot be Dart reserved keywords.',
         );
       }
       
@@ -251,6 +313,7 @@ class ThemeConfig {
     // Parse text styles
     final textStylesYaml = yaml['text_styles'] as List? ?? [];
     final textStyles = <TextStyle>[];
+    final seenStyleNames = <String>{};
     
     for (final ts in textStylesYaml) {
       if (ts is Map) {
@@ -264,11 +327,28 @@ class ThemeConfig {
             );
           }
           
+          // Check for duplicates
+          if (seenStyleNames.contains(style.name)) {
+            throw ConfigurationException(
+              'Duplicate text style name "${style.name}".\n'
+              'Text style names must be unique.',
+            );
+          }
+          seenStyleNames.add(style.name);
+          
           // Validate text style name format
           if (!RegExp(r'^[a-zA-Z_][a-zA-Z0-9_]*$').hasMatch(style.name)) {
             throw ConfigurationException(
               'Invalid text style name "${style.name}".\n'
               'Text style names must be valid Dart identifiers.',
+            );
+          }
+          
+          // Check if it's a reserved keyword
+          if (_dartReservedKeywords.contains(style.name)) {
+            throw ConfigurationException(
+              'Invalid text style name "${style.name}".\n'
+              'Text style names cannot be Dart reserved keywords.',
             );
           }
           
@@ -289,6 +369,14 @@ class ThemeConfig {
           );
         }
       } else if (ts is String) {
+        // Check for duplicates
+        if (seenStyleNames.contains(ts)) {
+          throw ConfigurationException(
+            'Duplicate text style name "$ts".\n'
+            'Text style names must be unique.',
+          );
+        }
+        seenStyleNames.add(ts);
         textStyles.add(TextStyle(name: ts));
       } else {
         throw ConfigurationException(
@@ -364,22 +452,25 @@ class ThemeConfig {
 
   static String _toSnakeCase(String input) {
     input = input.trim();
+    if (input.isEmpty) return 'theme';  // Fallback for empty input
     input = input.replaceAllMapped(
       RegExp(r'([a-z0-9])([A-Z])'),
       (match) => '${match.group(1)}_${match.group(2)}',
     );
     input = input.replaceAll(RegExp(r'\s+'), '_');
+    input = input.replaceAll(RegExp(r'_+'), '_');  // Replace multiple underscores with single
     return input.toLowerCase();
   }
 
   static String _toPascalCase(String input) {
     input = input.trim();
+    if (input.isEmpty) return '';
     final words = input.split(RegExp(r'[\s_-]+'));
-    return words
-        .map((word) => word.isEmpty
-            ? ''
-            : word[0].toUpperCase() + word.substring(1).toLowerCase())
+    final result = words
+        .where((word) => word.isNotEmpty)  // Filter out empty words
+        .map((word) => word[0].toUpperCase() + word.substring(1).toLowerCase())
         .join('');
+    return result.isEmpty ? 'Theme' : result;  // Fallback to 'Theme' if empty
   }
 
   static String _toCamelCase(String input) {
@@ -412,15 +503,15 @@ class FontWeight {
       );
     }
     
-    if (weight == null || weight is! int) {
+    if (weight == null || weight is! num) {
       throw ConfigurationException(
-        'Font weight must have a "weight" field of type integer.',
+        'Font weight must have a "weight" field of type number.',
       );
     }
     
     return FontWeight(
       name: name,
-      weight: weight,
+      weight: weight.toInt(),
     );
   }
 }

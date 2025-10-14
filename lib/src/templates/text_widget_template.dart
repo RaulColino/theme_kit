@@ -302,6 +302,10 @@ $factories
     // Convert to camelCase
     input = input.trim();
     final words = input.split(RegExp(r'[\s_-]+'));
+    if (words.isEmpty || words.first.isEmpty) {
+      // Fallback for edge cases (should not happen due to validation)
+      return 'font';
+    }
     return words[0].toLowerCase() +
         words
             .skip(1)
