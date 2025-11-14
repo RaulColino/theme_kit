@@ -328,7 +328,7 @@ flutter create --template=package my_company_theme
 
 ### Preventing Theme Widget Mixing with Lints
 
-When working with multiple themes in a large project, it's easy to accidentally mix widgets from different themes (e.g., using `ATText` with `MTColor`). The [leancode_lint](https://pub.dev/packages/leancode_lint) package provides lint rules to prevent this and enforce consistent design system usage.
+When using Theme Kit, it's common to accidentally use raw Flutter widgets instead of your theme-specific widgets (e.g., using `Text` or `Color` instead of `MTText` or `MTColor`). The [leancode_lint](https://pub.dev/packages/leancode_lint) package provides lint rules to prevent this and enforce consistent design system usage. It can also help prevent mixing widgets from different themes in projects that use multiple themes.
 
 #### Installation
 
