@@ -324,6 +324,82 @@ flutter create --template=package my_company_theme
 4. Generate theme with `--output lib`
 5. Publish your theme package
 
+## Best Practices
+
+### Preventing Theme Widget Mixing with Lints
+
+When using Theme Kit, it's common to accidentally use raw Flutter widgets instead of your theme-specific widgets (e.g., using `Text` or `Color` instead of `MTText` or `MTColor`). The [leancode_lint](https://pub.dev/packages/leancode_lint) package provides lint rules to prevent this and enforce consistent design system usage. It can also help prevent mixing widgets from different themes in projects that use multiple themes.
+
+#### Installation
+
+Add `leancode_lint` and `custom_lint` to your dev dependencies:
+
+```yaml
+dev_dependencies:
+  leancode_lint: ^19.0.0
+  custom_lint: ^0.8.0
+```
+
+Then run:
+
+```bash
+flutter pub get
+```
+
+#### Configuration
+
+Configure the `use_design_system_item` rule in your `analysis_options.yaml` to enforce usage of your theme widgets:
+
+```yaml
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  plugins:
+    - custom_lint
+
+custom_lint:
+  rules:
+    use_design_system_item:
+      # Enforce MTText instead of plain Text widget
+      - preferredItem: MTText
+        instead_of: Text
+      # Enforce MTColor instead of Colors or hardcoded colors
+      - preferredItem: MTColor
+        instead_of: Colors
+      # Add more mappings as needed for your theme
+```
+
+#### What This Catches
+
+The lint rule will warn you when:
+
+- Using `Text` directly instead of your theme's text widget (`MTText`, `ATText`, etc.)
+- Using `Colors` or hardcoded colors instead of your theme's color tokens (`MTColor`, `ATColor`, etc.)
+- Mixing widgets from different themes (configure multiple rules for each theme)
+
+#### Example
+
+**❌ Bad - Using raw Flutter widgets:**
+
+```dart
+Text('Hello World', style: TextStyle(color: Colors.blue));
+```
+
+**✅ Good - Using theme widgets:**
+
+```dart
+MTText.bodyM('Hello World').styles(color: MTColor.primary);
+```
+
+#### Benefits
+
+- **Consistency**: Ensures all UI elements use your design system
+- **Type Safety**: Prevents mixing widgets from different themes
+- **Maintainability**: Makes theme updates easier by catching all usages
+- **Team Alignment**: Helps new team members follow the correct patterns
+
+For more information about leancode_lint and its rules, visit the [package documentation](https://pub.dev/packages/leancode_lint).
+
 ## Migration from 2.x
 
 If you're upgrading from theme_kit 2.x (Mason bricks), here are the key changes:
